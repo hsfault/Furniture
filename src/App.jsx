@@ -6,7 +6,6 @@ import Preloader from './components/Preloader.jsx';
 import Nav from './components/Nav.jsx';
 import DrawerMenu from './components/DrawerMenu.jsx';
 import DoorTransition from './components/DoorTransition.jsx';
-import Cursor from './components/Cursor.jsx';
 import Footer from './components/Footer.jsx';
 import CartDrawer from './components/CartDrawer.jsx';
 import ProductSheet from './components/ProductSheet.jsx';
@@ -62,7 +61,6 @@ export default function App() {
       <ProductSheet />
       <DoorTransition />
       <Preloader />
-      <Cursor />
       <div className="grain" aria-hidden="true" />
     </>
   );

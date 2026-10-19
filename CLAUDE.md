@@ -28,3 +28,6 @@ Generate images with `scripts/pollinations.py` (Python stdlib, no install needed
 - Every ScrollTrigger lives inside a `useGSAP` scope so it dies with its component.
 - Don't use IntersectionObserver to decide whether a canvas inside a ScrollTrigger pin is visible: it misreports `position: fixed` pins. Use `LazyMount` (rect-based) or a ScrollTrigger.
 - The footer never gets a large wordmark or logo.
+- Use the system cursor; there is no custom cursor.
+- Small text on plaster/linen uses `text-taupe` (#6E6256), `text-brass-ink` or `text-sage-ink`; plain `brass`/`sage` are for lines, dots and dark grounds. Text laid over photos or 3D gets a plaster scrim or a dark plaque.
+- Performance: the WebGL image layer renders from the GSAP ticker (`frameloop="never"` + `advance`) and only measures pictures near the viewport. Avoid `backdrop-filter`, full-screen `mix-blend-mode` and blanket `will-change`; they cost a full repaint over the canvases every frame.

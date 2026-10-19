@@ -15,7 +15,7 @@ function Pill({ src, alt }) {
   return (
     <span className="pill no-ink mx-[0.12em] inline-block align-[-0.08em]" onPointerEnter={() => grow(true)} onPointerLeave={() => grow(false)}>
       <span ref={ref} className="inline-block h-[0.8em] w-[1.6em] align-middle">
-        <GLImage src={src} alt={alt} shape="pill" parallax={false} reveal={false} className="h-full w-full rounded-full" data-cursor="VIEW" />
+        <GLImage src={src} alt={alt} shape="pill" parallax={false} reveal={false} className="h-full w-full rounded-full" />
       </span>
     </span>
   );

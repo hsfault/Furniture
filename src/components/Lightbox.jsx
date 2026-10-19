@@ -51,7 +51,7 @@ export default function Lightbox({ room, from, onClose }) {
 
   return (
     <div ref={root} className="fixed inset-0 z-[90] flex items-center justify-center p-4 md:p-10" role="dialog" aria-modal="true" aria-label={room.name}>
-      <div className="absolute inset-0 bg-espresso/80 backdrop-blur-sm" onClick={close} />
+      <div className="absolute inset-0 bg-espresso/85" onClick={close} />
       <div className="relative w-full max-w-[min(1200px,calc((100svh_-_9rem)_*_var(--r)))]" style={{ '--r': room.ratio }}>
         <div ref={frame} data-flip-id="room-lb" className="relative w-full" style={{ aspectRatio: room.ratio }}>
           <Img src={room.image} alt={room.name} className={`absolute inset-0 ${room.shape === 'arch' ? 'rounded-t-[999px]' : 'rounded-sm'}`} eager />

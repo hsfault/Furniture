@@ -3,7 +3,8 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import vertexShader from './shaders/imageBend.vert?raw';
 import fragmentShader from './shaders/imageBend.frag?raw';
-import { getItems, subscribe, glState } from './registry.js';
+import { getItems, subscribe, glState, anyNear } from './registry.js';
+import { gsap } from '../lib/gsap.js';
 import { glImages } from '../lib/env.js';
 import { scrollVelocity } from '../lib/lenis.js';
 
@@ -86,6 +87,10 @@ function GLPlane({ item }) {
       if (m) m.visible = false;
       return;
     }
+    if (!item.near) {
+      m.visible = false;
+      return;
+    }
     const s = item.state;
     const vw = size.width;
     const vh = size.height;
@@ -140,6 +145,29 @@ function GLPlane({ item }) {
   );
 }
 
+// Render from GSAP's ticker, right after Lenis has moved the page, so the
+// pictures and the DOM move in the same frame. Skip frames with nothing near
+// the viewport (after one clearing frame).
+function TickerDriver({ paused }) {
+  const advance = useThree((s) => s.advance);
+  useEffect(() => {
+    let cleared = false;
+    const tick = (time) => {
+      if (paused.current) return;
+      if (anyNear()) {
+        cleared = false;
+        advance(time, false);
+      } else if (!cleared) {
+        cleared = true;
+        advance(time, false);
+      }
+    };
+    gsap.ticker.add(tick);
+    return () => gsap.ticker.remove(tick);
+  }, [advance, paused]);
+  return null;
+}
+
 function ResizeCamera() {
   const { camera, size } = useThree();
   useEffect(() => {
@@ -154,11 +182,13 @@ function ResizeCamera() {
 
 export default function GLImageLayer() {
   const [list, setList] = useState(getItems);
-  const [hidden, setHidden] = useState(false);
+  const paused = useRef(false);
 
   useEffect(() => subscribe(() => setList(getItems())), []);
   useEffect(() => {
-    const onVis = () => setHidden(document.hidden);
+    const onVis = () => {
+      paused.current = document.hidden;
+    };
     document.addEventListener('visibilitychange', onVis);
     return () => document.removeEventListener('visibilitychange', onVis);
   }, []);
@@ -169,13 +199,14 @@ export default function GLImageLayer() {
       <Canvas
         orthographic
         flat
-        dpr={[1, 1.5]}
-        frameloop={hidden ? 'never' : 'always'}
+        dpr={[1, 1.25]}
+        frameloop="never"
         camera={{ position: [0, 0, 500], near: 1, far: 1000, zoom: 1 }}
         gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
         style={{ pointerEvents: 'none' }}
       >
         <ResizeCamera />
+        <TickerDriver paused={paused} />
         <VelocitySpring />
         {list.map((it) => (
           <GLPlane key={it.id} item={it} />

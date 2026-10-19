@@ -6,11 +6,15 @@ let lenis = null;
 
 export function initLenis() {
   if (lenis) return lenis;
+  // lerp smoothing glides toward the target every frame, which reads smoother
+  // than a fixed-duration ease when wheel events arrive unevenly.
   lenis = new Lenis({
-    duration: reducedMotion ? 0 : 1.15,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    lerp: reducedMotion ? 1 : 0.09,
     smoothWheel: !reducedMotion,
+    wheelMultiplier: 0.9,
+    touchMultiplier: 1.4,
     syncTouch: false,
+    autoRaf: false,
   });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));

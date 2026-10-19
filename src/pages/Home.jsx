@@ -5,7 +5,7 @@ import Manifesto from '../sections/Manifesto.jsx';
 import Rooms from '../sections/Rooms.jsx';
 import DayAtHome from '../sections/DayAtHome.jsx';
 import Configurator from '../sections/Configurator.jsx';
-import CatalogueShelf from '../sections/CatalogueShelf.jsx';
+import SwatchFan from '../sections/SwatchFan.jsx';
 import LogToLivingRoom from '../sections/LogToLivingRoom.jsx';
 import CollectionCanvas from '../sections/CollectionCanvas.jsx';
 import Homes from '../sections/Homes.jsx';
@@ -17,7 +17,7 @@ import { ScrollTrigger } from '../lib/gsap.js';
 export default function Home() {
   const { hash } = useLocation();
 
-  // A direct visit to /#library etc. lands on that section once pins exist.
+  // A direct visit to /#collections etc. lands on that section once pins exist.
   useEffect(() => {
     if (!hash) return undefined;
     const t = setTimeout(() => {
@@ -34,7 +34,7 @@ export default function Home() {
       <Rooms />
       <DayAtHome />
       <Configurator />
-      <CatalogueShelf />
+      <SwatchFan />
       <LogToLivingRoom />
       <CollectionCanvas />
       <Homes />

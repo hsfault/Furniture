@@ -83,7 +83,7 @@ export default function Configurator() {
         </h2>
       </div>
       <div className="wrap grid gap-10 lg:grid-cols-12 lg:gap-8">
-        <div ref={stage} className="relative lg:col-span-7" data-cursor="ROTATE">
+        <div ref={stage} className="relative lg:col-span-7">
           <LazyMount className="niche relative h-[60vh] overflow-hidden rounded-t-[999px] bg-[#E6DED2] md:h-[78vh] lg:h-[80vh]">
             {(visible) => (
               <Suspense fallback={<div className="absolute inset-0 animate-pulse bg-[#E6DED2]" />}>
@@ -142,7 +142,7 @@ export default function Configurator() {
                 <RollingNumber value={price} className="display text-[clamp(2.2rem,3.6vw,3.2rem)] leading-none" />
                 <p className="mono mt-2 text-taupe">Made to order · 5–6 weeks</p>
               </div>
-              <button type="button" className="btn-clay" onClick={addToCart} data-cursor="ADD">
+              <button type="button" className="btn-clay" onClick={addToCart}>
                 Add to cart
               </button>
             </div>

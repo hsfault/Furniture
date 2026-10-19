@@ -31,7 +31,7 @@ export const brand = {
 
 export const nav = [
   { label: 'Shop', to: '/shop', preview: '/images/product-dune-lounge-chair.jpg', blurb: 'Every piece, in one long index' },
-  { label: 'Collections', to: '/#library', preview: '/images/collection-living.jpg', blurb: 'Eight books on one shelf' },
+  { label: 'Collections', to: '/#collections', preview: '/images/collection-living.jpg', blurb: 'Eight swatches on one brass pivot' },
   { label: 'Atelier', to: '/#atelier', preview: '/images/craftsman-1.jpg', blurb: 'From a Chiniot log to your room' },
   { label: 'Visit', to: '/#visit', preview: '/images/visit-showroom.jpg', blurb: 'DHA Phase 6, Lahore' },
 ];
@@ -39,7 +39,7 @@ export const nav = [
 export const menuDrawers = [
   { label: 'Home', to: '/', preview: '/images/room-1.jpg', note: '01' },
   { label: 'Shop', to: '/shop', preview: '/images/product-dune-lounge-chair.jpg', note: '02' },
-  { label: 'Collections', to: '/#library', preview: '/images/collection-dining.jpg', note: '03' },
+  { label: 'Collections', to: '/#collections', preview: '/images/collection-dining.jpg', note: '03' },
   { label: 'Atelier', to: '/#atelier', preview: '/images/craftsman-2.jpg', note: '04' },
   { label: 'Visit', to: '/#visit', preview: '/images/visit-showroom.jpg', note: '05' },
 ];
@@ -97,7 +97,7 @@ export const footer = {
       { label: 'Lighting', to: '/shop?c=Lighting' },
     ] },
     { title: 'Studio', links: [
-      { label: 'The Library', to: '/#library' },
+      { label: 'The collections', to: '/#collections' },
       { label: 'Atelier', to: '/#atelier' },
       { label: 'Homes we furnished', to: '/#homes' },
       { label: 'Make it yours', to: '/#configure' },

@@ -79,10 +79,10 @@ function Drawing({ id }) {
         {DIMS.map((d) => (
           <path key={d} d={d} {...stroke} strokeWidth="1" className="pl-dim" strokeDasharray="1" strokeDashoffset="1" />
         ))}
-        <text x="250" y="386" textAnchor="middle" className="pl-dimtext" opacity="0" fill="#B8935A" stroke="none" style={{ font: '500 10px "IBM Plex Mono", monospace', letterSpacing: '0.14em' }}>
+        <text x="250" y="386" textAnchor="middle" className="pl-dimtext" opacity="0" fill="#7F6131" stroke="none" style={{ font: '500 10px "IBM Plex Mono", monospace', letterSpacing: '0.14em' }}>
           D 84
         </text>
-        <text x="452" y="228" className="pl-dimtext" opacity="0" fill="#B8935A" stroke="none" style={{ font: '500 10px "IBM Plex Mono", monospace', letterSpacing: '0.14em' }}>
+        <text x="452" y="228" className="pl-dimtext" opacity="0" fill="#7F6131" stroke="none" style={{ font: '500 10px "IBM Plex Mono", monospace', letterSpacing: '0.14em' }}>
           H 72
         </text>
       </g>
@@ -96,7 +96,7 @@ function Sheet({ id }) {
       <div className="mono absolute left-[var(--gutter)] top-6 text-taupe">TAAQ · Drawing no. 01 · Dune lounge chair</div>
       <div className="mono absolute right-[var(--gutter)] top-6 text-taupe">Scale 1:10</div>
       <Drawing id={id} />
-      <p className="mono pl-dimtext mt-4 text-brass opacity-0">W 78 · D 84 · H 72 cm</p>
+      <p className="mono pl-dimtext mt-4 text-brass-ink opacity-0">W 78 · D 84 · H 72 cm</p>
       <div className="absolute bottom-6 left-[var(--gutter)] right-[var(--gutter)] flex items-end justify-between">
         <span className="mono text-taupe">Carved in Chiniot · Finished in Lahore</span>
         <span className="pl-count display text-[clamp(2.5rem,6vw,4.5rem)] leading-none text-espresso">00</span>

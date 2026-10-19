@@ -16,7 +16,7 @@ A mockup storefront for **TAAQ**, a solid-wood furniture maker ("taaq" is Urdu f
 | Styling | Tailwind CSS v3 with brand tokens, CSS variables in `index.css` |
 | State | Zustand (`cart` persisted to localStorage, `ui` for menu/film/sound/intro) |
 | Motion | GSAP 3.13+ (ScrollTrigger, SplitText, Flip, Draggable, InertiaPlugin) via `@gsap/react` `useGSAP` |
-| Scroll | Lenis synced to the GSAP ticker (`lenis.on('scroll', ScrollTrigger.update)`, `gsap.ticker.add(t => lenis.raf(t*1000))`, `lagSmoothing(0)`) |
+| Scroll | Lenis (lerp 0.09) synced to the GSAP ticker (`lenis.on('scroll', ScrollTrigger.update)`, `gsap.ticker.add(t => lenis.raf(t*1000))`, `lagSmoothing(0)`); the WebGL image layer renders from the same ticker, right after Lenis |
 | 3D | three + @react-three/fiber 8 + drei 9. The lamp's "bloom" is an additive halo sprite: an EffectComposer pass rendered the hero blank under software GL, so postprocessing is not used |
 | Icons | lucide-react, sparingly |
 | Images | Pollinations via `scripts/pollinations.py` → `public/images`, `public/textures`; never hotlinked |
@@ -38,7 +38,7 @@ No UI kits.
 | linen | #F7F3EE | raised surfaces, book pages |
 | espresso | #2A1D15 | primary text |
 | walnut | #5A3A25 | secondary dark, buttons, shelf |
-| taupe | #8F8073 | secondary text |
+| taupe | #6E6256 | secondary text (deepened from #8F8073 for 4.9:1 contrast). Text-only variants: `brass-ink` #7F6131, `sage-ink` #5C6B4F |
 | sage | #8C9A7E | tags, small states |
 | clay | #C2693E | the one strong accent: CTAs, active, play button, cart badge, focus ring |
 | brass | #B8935A | hairlines, foil, dimension lines |
@@ -80,7 +80,7 @@ Reduced motion: no WebGL distortion, no scrub, no film player, simple fades, 3D 
 | `Nav` | TAAQ left (Bodoni 22 px, .2em), Shop · Collections · Atelier · Visit · Cart (n) · sound · Menu; rolling-label hover; transparent over hero, plaster+blur after 100 px; hides on scroll down |
 | `DrawerMenu` | full-screen chest of 5 walnut drawers with brass pulls, labels Bodoni ~7vw, slide in from alternating sides; hover pulls a drawer out (translateZ, scale 1.03, shadow) and a page preview slides out of its top edge; click → wooden thunk + all drawers close → navigate |
 | `DoorTransition` | two plaster wardrobe doors (walnut edge, brass knob) meet in 0.7 s power4.inOut; destination in Bodoni italic on the seam; scroll resets while closed; doors open, the new headline flips in |
-| `Cursor` | pointer:fine only; 12 px ring + 3 px dot lerped; on `[data-cursor]` it becomes a brass measuring crosshair spanning the element with live px→cm readouts and a label (VIEW, DRAG, OPEN, ROTATE); optional caption chip (`data-cursor-caption`) |
+| Cursor | the system cursor (the custom measuring cursor was removed at the client's request) |
 | `FilmPlayer` | "Play the House": 56 px clay button that expands to a 420 px plaster bar (play/pause, chapter title, scrubbable progress with ticks, timecode, chapter popover, sound); one GSAP master timeline drives Lenis through 10 chapters; three.js door cuts with sawdust between chapters; letterbox, title card, grain; any input pauses, Space toggles, Esc stops; hides near footer; not rendered for reduced motion |
 | `FilmCutScene.js` | plain three.js, own canvas, rendered only during cuts: bevelled walnut doors with brass handles swing in from depth and close, instanced sawdust, night tint, next chapter title flies in, doors reopen |
 | `Footer` | brass top hairline; "Some things are made to be *kept*." + newsletter (underline input, clay arrow → check, "See you in your inbox."); 4 columns (Shop, Studio, Care & Delivery, Visit); small bottom bar only |
@@ -100,7 +100,7 @@ Each homepage section is a `<section data-chapter="NN">`; titles, captions and d
 | 03 | Rooms | 220vh, sticky centered title, 9 GL images at speeds 0.5→1.6 with tilt; hover caption chip; click → Flip lightbox with pulsing brass hotspots → tag (name, price, View) | 2 staggered columns |
 | 04 | A Day at Home | pinned horizontal 5 panels; bg dawn → plaster → amber → dusk rose → night with text inversion; mono clock 07:00→23:00; sun/moon on an arc; inner parallax opposite to travel | vertical stack, same colours |
 | 05 | Make It Yours (`ConfiguratorScene`) | Dune chair on rotating plinth; OrbitControls polar 60–85°, damped; wood swatches crossfade texture in a 0.6 s shader blend; fabric swap with puff; Single/Wide width spring; 3D brass dimension lines with Html labels; rolling price; canvas snapshot flies to cart | canvas 60vh on top, swipe rows |
-| 06 | The Library (`CatalogueShelf`, `Book`, `BookPage`) | walnut case, 8 cloth books + ghost, bookend, plant, tilted workshop photo; books rise in; hover lifts 12 px; click: dim, fly to center turning cover (rotY 90→0), slide right, cover opens (−178°); 7 pages turned with Next/Back/←→ (leaf −176°, moving shade); add to cart from pages; close reverses at 1.6× | horizontal shelf scroll, single-page book |
+| 06 | The Sample Fan (`SwatchFan`) | a veneer sample fan on a brass rivet: 8 arch-topped slats in each collection's cloth colour with a photo window, number and vertical name; opens out of a closed stack on scroll; turn it like a dial (drag with inertia and snap, click a slat, arrows or ←/→); the upright slat is the open collection, shown in a specimen panel (photo, line, stats, essay, piece thumbnails that open the product sheet, Shop / Visit) | tap slats or arrows, no drag |
 | 07 | Log to Living Room (`LogStoryScene`) | pinned 300vh; log → 6 planks fan → stool with brass joint outlines → oiled finish (roughness .8→.35, sheen sweep) + cane seat weave by weave; sawdust during cut; step list with brass progress | canvas + tappable step list, no pin |
 | 08 | The Collection (`CollectionCanvas`) | infinite wrapping plane of product photos, Draggable+Inertia+wheel, GL bend from drag velocity; filter chips re-flow with Flip (others shrink to dots); click → Flip into ProductSheet | 2-col masonry with parallax |
 | 09 | Homes | walnut table, 8 Polaroids with Caveat captions; drag with inertia, lift, bounce; double-click flips to quote; Shuffle | swipeable stack |

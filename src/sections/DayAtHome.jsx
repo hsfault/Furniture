@@ -19,13 +19,13 @@ function Panel({ p, mobile }) {
         <Img src={p.image} alt={`${p.label}: ${p.story}`} className="day-img absolute inset-y-0 -left-[8%] w-[116%]" />
       </div>
       <div className={mobile ? 'w-full' : 'max-w-[30ch]'}>
-        <p className="mono opacity-70">
+        <p className="mono opacity-90">
           {p.time} — {p.label}
         </p>
         <h3 className="display mt-4 text-[clamp(2.2rem,4.4vw,4.6rem)] leading-[0.98]">
           {p.title} <i>{p.italic}</i>
         </h3>
-        <p className="mt-5 max-w-[34ch] text-[15px] leading-relaxed opacity-80">{p.story}</p>
+        <p className="mt-5 max-w-[34ch] text-[15px] leading-relaxed opacity-90">{p.story}</p>
         <ul className="mt-6 flex flex-col gap-1">
           {p.links.map((slug) => (
             <li key={slug}>
@@ -75,6 +75,7 @@ export default function DayAtHome() {
           start: 'top top',
           end: () => `+=${distance()}`,
           pin: true,
+          anticipatePin: 1,
           scrub: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
@@ -94,7 +95,13 @@ export default function DayAtHome() {
       const tl = gsap.timeline({
         scrollTrigger: { trigger: pin.current, start: 'top top', end: () => `+=${distance()}`, scrub: 1, invalidateOnRefresh: true },
       });
-      day.slice(1).forEach((d) => tl.to(pin.current, { backgroundColor: d.bg, color: d.fg, ease: 'none', duration: 1 }));
+      day.slice(1, -1).forEach((d) => tl.to(pin.current, { backgroundColor: d.bg, ease: 'none', duration: 1 }));
+      // Night falls quickly, and the text flips to plaster in one short step
+      // once the room is dark, so it never sits grey-on-rose.
+      const night = day[day.length - 1];
+      tl.to(pin.current, { backgroundColor: night.bg, ease: 'power1.inOut', duration: 0.45 }, 3.4);
+      tl.to(pin.current, { color: night.fg, ease: 'none', duration: 0.08 }, 3.62);
+      tl.to({}, { duration: 0.15 }, 3.85);
       // pictures drift against the direction of travel
       panels.forEach((panel) => {
         const img = panel.querySelector('.day-img');

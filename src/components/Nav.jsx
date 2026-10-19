@@ -56,9 +56,9 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-[60] transition-[transform,background-color,backdrop-filter] duration-500 ease-inout4 ${
+      className={`fixed inset-x-0 top-0 z-[60] transition-[transform,background-color] duration-500 ease-inout4 ${
         hide ? '-translate-y-full' : 'translate-y-0'
-      } ${solid && !menuOpen ? 'bg-plaster/80 backdrop-blur-md' : 'bg-transparent'}`}
+      } ${solid && !menuOpen ? 'bg-plaster/95 shadow-[0_1px_0_rgba(184,147,90,0.35)]' : 'bg-transparent'}`}
     >
       <nav className={`wrap flex h-[var(--nav-h)] items-center justify-between ${menuOpen ? 'text-linen' : 'text-espresso'}`} aria-label="Main">
         <TLink to="/" className="tap display flex items-center text-[22px] tracking-[0.2em]" aria-label="TAAQ, home">
@@ -83,7 +83,6 @@ export default function Nav() {
             }}
             className="roll-host tap inline-flex items-center gap-2 px-2 text-[15px] lg:ml-4"
             aria-label={`Cart, ${count} item${count === 1 ? '' : 's'}`}
-            data-cursor="OPEN"
           >
             <Roll>Cart</Roll>
             <span ref={badge} className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-clay px-1.5 font-mono text-[11px] text-linen">
@@ -100,7 +99,6 @@ export default function Nav() {
             className="roll-host tap inline-flex items-center gap-3 pl-2 text-[15px]"
             aria-expanded={menuOpen}
             aria-controls="drawer-menu"
-            data-cursor="OPEN"
           >
             <span className="hidden sm:inline">
               <Roll>{menuOpen ? 'Close' : 'Menu'}</Roll>

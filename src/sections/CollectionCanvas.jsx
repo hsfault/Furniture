@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { gsap, Draggable, Flip, useGSAP } from '../lib/gsap.js';
+import { gsap, Draggable, Flip, ScrollTrigger, useGSAP } from '../lib/gsap.js';
 import { flipChars } from '../lib/splitReveal.js';
 import { initParallax } from '../lib/parallax.js';
 import { isMobile, reducedMotion } from '../lib/env.js';
@@ -163,7 +163,18 @@ function Desktop({ filter }) {
     const el = box.current;
     el.addEventListener('wheel', onWheel, { passive: false });
 
+    // Only move the 29 pictures while the canvas is on screen.
+    let onScreen = false;
+    const seen = ScrollTrigger.create({
+      trigger: el,
+      start: 'top bottom',
+      end: 'bottom top',
+      onToggle: (self) => {
+        onScreen = self.isActive;
+      },
+    });
     const tick = () => {
+      if (!onScreen) return;
       place();
       const dx = o.x - o.px;
       const dy = o.y - o.py;
@@ -186,6 +197,7 @@ function Desktop({ filter }) {
     window.addEventListener('resize', onResize);
     return () => {
       drag.kill();
+      seen.kill();
       gsap.ticker.remove(tick);
       el.removeEventListener('wheel', onWheel);
       window.removeEventListener('resize', onResize);
@@ -193,7 +205,7 @@ function Desktop({ filter }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div ref={box} className="relative h-[86vh] overflow-hidden border-y hairline" data-cursor="DRAG">
+    <div ref={box} className="relative h-[86vh] overflow-hidden border-y hairline">
       <div ref={proxy} className="pointer-events-none absolute left-0 top-0 h-px w-px opacity-0" aria-hidden="true" />
       {products.map((p, i) => {
         const b = bases.current[i] || { w: 260, h: 320 };

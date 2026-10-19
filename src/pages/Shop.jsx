@@ -37,7 +37,6 @@ function Row({ p, index, visible, total }) {
             shape={index % 3 === 0 ? 'arch' : 'rect'}
             radius={3}
             className={index % 2 ? 'aspect-[5/4] w-full' : 'aspect-[4/5] w-full md:w-[86%]'}
-            data-cursor="VIEW"
           />
         </TLink>
       </div>
@@ -53,7 +52,7 @@ function Row({ p, index, visible, total }) {
             const wd = woods.find((x) => x.id === w);
             return <span key={w} title={wd.name} className="h-4 w-4 rounded-full shadow-[inset_0_0_0_1px_rgba(0,0,0,.15)]" style={{ background: `radial-gradient(circle at 35% 30%, ${wd.tint}, ${wd.hex})` }} />;
           })}
-          <span className={`mono ml-3 ${p.inStock ? 'text-sage' : 'text-taupe'}`}>{p.inStock ? 'In stock' : 'Made to order'}</span>
+          <span className={`mono ml-3 ${p.inStock ? 'text-sage-ink' : 'text-taupe'}`}>{p.inStock ? 'In stock' : 'Made to order'}</span>
         </div>
         <div className="mt-6 flex items-center gap-5">
           <span className="display text-3xl">{formatPrice(p.price)}</span>
@@ -62,7 +61,6 @@ function Row({ p, index, visible, total }) {
             onClick={() => openSheet(p.slug, frame.current.querySelector('.gl-frame'))}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-espresso/30 transition-colors hover:border-clay hover:bg-clay hover:text-linen"
             aria-label={`Quick view: ${p.name}`}
-            data-cursor="OPEN"
           >
             <Plus size={18} strokeWidth={1.4} />
           </button>

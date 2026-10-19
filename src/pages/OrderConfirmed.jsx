@@ -61,7 +61,7 @@ export default function OrderConfirmed() {
               <span className="absolute inset-[3px] rounded-full bg-clay" />
             </span>
             <div className="tl-text">
-              <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-brass">{dateLong(new Date(start.getTime() + s.days * 864e5))}</p>
+              <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-brass-ink">{dateLong(new Date(start.getTime() + s.days * 864e5))}</p>
               <p className="display mt-2 text-2xl leading-tight">{s.label}</p>
               <p className="mt-2 max-w-[26ch] text-[14px] text-taupe">{s.note}</p>
             </div>

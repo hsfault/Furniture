@@ -13,7 +13,7 @@ const nextFrame = () => new Promise((r) => requestAnimationFrame(() => requestAn
 export function labelFor(to) {
   const [path, hash] = to.split('#');
   if (hash) {
-    return { library: 'The Library', atelier: 'The Atelier', visit: 'Visit', homes: 'Homes', configure: 'Make It Yours' }[hash] || 'Home';
+    return { collections: 'The Collections', atelier: 'The Atelier', visit: 'Visit', homes: 'Homes', configure: 'Make It Yours' }[hash] || 'Home';
   }
   if (path === '/' || path === '') return 'Home';
   if (path.startsWith('/shop')) return 'The Collection';
@@ -50,12 +50,17 @@ function Door({ side, innerRef }) {
   return (
     <div
       ref={innerRef}
-      className={`absolute top-0 h-full w-1/2 bg-plaster ${left ? 'left-0' : 'right-0'}`}
-      style={{ visibility: 'hidden', boxShadow: left ? '18px 0 40px -20px rgba(27,22,18,.45)' : '-18px 0 40px -20px rgba(27,22,18,.45)' }}
+      className={`absolute top-0 h-full w-1/2 ${left ? 'left-0' : 'right-0'}`}
+      style={{
+        visibility: 'hidden',
+        // Dark walnut doors so the destination name (in linen) always reads.
+        background:
+          'repeating-linear-gradient(92deg, rgba(255,235,200,.035) 0 2px, transparent 2px 11px), linear-gradient(100deg, #3b2618, #2e1d12 45%, #3a2517 75%, #26170e)',
+        boxShadow: left ? '18px 0 40px -20px rgba(0,0,0,.6)' : '-18px 0 40px -20px rgba(0,0,0,.6)',
+      }}
     >
-      <div className="absolute inset-0 opacity-60" style={{ background: 'radial-gradient(120% 90% at 50% 10%, #f7f3ee, transparent 60%)' }} />
-      <div className={`absolute inset-y-[6%] ${left ? 'left-[10%] right-[8%]' : 'left-[8%] right-[10%]'} border hairline`} />
-      <div className={`absolute top-0 h-full w-[6px] bg-walnut ${left ? 'right-0' : 'left-0'}`} />
+      <div className={`absolute inset-y-[6%] ${left ? 'left-[10%] right-[8%]' : 'left-[8%] right-[10%]'} border border-brass/35`} />
+      <div className={`absolute top-0 h-full w-[3px] bg-brass/70 ${left ? 'right-0' : 'left-0'}`} />
       <div
         className={`absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full ${left ? 'right-5' : 'left-5'}`}
         style={{ background: 'radial-gradient(circle at 35% 35%, #e7c98f, #b8935a 55%, #7d5f33)', boxShadow: '0 2px 4px rgba(42,29,21,.4)' }}
@@ -139,8 +144,12 @@ export default function DoorTransition() {
     <div className="pointer-events-none fixed inset-0 z-[150]" aria-hidden="true">
       <Door side="left" innerRef={leftRef} />
       <Door side="right" innerRef={rightRef} />
-      <div ref={labelRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center opacity-0">
-        <p className="display whitespace-nowrap px-4 text-[clamp(1.6rem,4vw,3rem)] italic text-espresso">{label}</p>
+      {/* centring lives on the wrapper so GSAP can animate the inner y freely */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div ref={labelRef} className="rounded-sm bg-night/90 px-7 py-4 text-center opacity-0 shadow-[0_20px_40px_-16px_rgba(0,0,0,.7)] ring-1 ring-brass/40">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-brass">Next room</p>
+          <p className="display mt-1 whitespace-nowrap text-[clamp(1.6rem,4vw,3rem)] italic leading-tight text-linen">{label}</p>
+        </div>
       </div>
     </div>
   );

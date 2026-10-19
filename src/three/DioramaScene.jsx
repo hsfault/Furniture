@@ -1,4 +1,4 @@
-import { Component, Suspense, useEffect, useMemo, useRef } from 'react';
+import { Component, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { ContactShadows, Environment, Lightformer, Sparkles } from '@react-three/drei';
@@ -147,7 +147,7 @@ function Room({ sun, wallMats }) {
           ))}
         </group>
       )}
-      <Sparkles count={70} scale={[2.6, 2, 2.4]} position={[-1.5, 1.2, WIN.z + 0.3]} size={1.6} speed={0.18} opacity={0.55} color="#F2DDB5" noise={0.6} />
+      <Sparkles count={40} scale={[2.6, 2, 2.4]} position={[-1.5, 1.2, WIN.z + 0.3]} size={1.6} speed={0.18} opacity={0.55} color="#F2DDB5" noise={0.6} />
     </group>
   );
 }
@@ -244,7 +244,7 @@ const PIECES = [
   { key: 'lamp', pos: [-0.62, 0, -0.62], rot: -0.5, puff: 0.6 },
 ];
 
-function Pieces({ progress, reduced, sun, power }) {
+function Pieces({ progress, reduced, sun, power, motion }) {
   const introDone = useUI((s) => s.introDone);
   const refs = useRef([]);
   const sim = useRef(PIECES.map((_, i) => ({ y: reduced ? 0 : 3.2 + i * 0.25, v: 0, sq: 0, sqv: 0, landed: reduced, start: i * 0.18 })));
@@ -295,6 +295,7 @@ function Pieces({ progress, reduced, sun, power }) {
     });
     // the lamp flickers on once the last piece has landed
     const allDown = sim.current.every((s) => s.landed && s.y === 0);
+    motion.current.pieces = !allDown || sim.current.some((s) => Math.abs(s.sq) > 0.002);
     if (allDown && flicker.current === null) flicker.current = state.clock.elapsedTime + 0.25;
     if (reduced) power.current = sun.lamp;
     else if (flicker.current !== null) {
@@ -347,6 +348,24 @@ class Quiet extends Component {
 function Scene({ progress, mobile, reduced }) {
   const sun = useMemo(() => sunFor(hourFloat()), []);
   const power = useRef(0);
+  // Scroll progress, eased so the camera glides instead of tracking the scrollbar.
+  const smooth = useRef(progress?.current ?? 0);
+  const motion = useRef({ pieces: true, last: -1 });
+  const [liveShadows, setLiveShadows] = useState(true);
+  const live = useRef(true);
+
+  useFrame((state, dt) => {
+    const target = progress?.current ?? 0;
+    smooth.current += (target - smooth.current) * Math.min(1, dt * 5);
+    if (Math.abs(target - smooth.current) < 0.0005) smooth.current = target;
+    const moving = motion.current.pieces || Math.abs(smooth.current - motion.current.last) > 0.0002;
+    motion.current.last = smooth.current;
+    if (moving) state.gl.shadowMap.needsUpdate = true;
+    if (moving !== live.current) {
+      live.current = moving;
+      setLiveShadows(moving);
+    }
+  }, -1);
   const wallMats = useMemo(() => {
     const tex = getTexture('plaster-wall', 1.4);
     return [0, 1].map(() => new THREE.MeshStandardMaterial({ map: tex, roughness: 0.95, transparent: true }));
@@ -354,7 +373,7 @@ function Scene({ progress, mobile, reduced }) {
   const sunLight = useRef();
 
   useFrame(() => {
-    const p = progress?.current ?? 0;
+    const p = smooth.current;
     const fade = 1 - Math.min(1, Math.max(0, (p - 0.25) / 0.5));
     wallMats.forEach((m) => {
       m.opacity = fade;
@@ -402,9 +421,9 @@ function Scene({ progress, mobile, reduced }) {
         </Suspense>
       </Quiet>
       <Room sun={sun} wallMats={wallMats} />
-      <Pieces progress={progress} reduced={reduced} sun={sun} power={power} />
-      <ContactShadows position={[0, 0.003, 0]} opacity={0.55} scale={7} blur={2.6} far={1.6} resolution={mobile ? 256 : 512} color="#3a2414" />
-      <CameraRig progress={progress} mobile={mobile} />
+      <Pieces progress={smooth} reduced={reduced} sun={sun} power={power} motion={motion} />
+      <ContactShadows frames={liveShadows ? Infinity : 1} position={[0, 0.003, 0]} opacity={0.55} scale={7} blur={2.6} far={1.6} resolution={256} color="#3a2414" />
+      <CameraRig progress={smooth} mobile={mobile} />
     </>
   );
 }
@@ -413,12 +432,14 @@ export default function DioramaScene({ progress, mobile, reduced, active = true 
   return (
     <Canvas
       shadows={!mobile}
-      dpr={mobile ? 1 : [1, 1.5]}
+      dpr={mobile ? 1 : [1, 1.25]}
       frameloop={!active ? 'never' : reduced ? 'demand' : 'always'}
       camera={{ fov: mobile ? 46 : 34, position: P0.toArray(), near: 0.1, far: 40 }}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
       onCreated={({ gl }) => {
         gl.toneMappingExposure = 1.15;
+        gl.shadowMap.autoUpdate = false; // redrawn only while something moves
+        gl.shadowMap.needsUpdate = true;
       }}
       aria-label="A 3D room: a bouclé lounge chair, a walnut side table, a brass floor lamp, a cane bench and a clay vase under an arched window."
       role="img"

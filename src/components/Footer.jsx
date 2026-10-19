@@ -49,7 +49,6 @@ export default function Footer() {
               type="submit"
               aria-label={sent ? 'Subscribed' : 'Subscribe'}
               className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-linen transition-colors duration-500 ${sent ? 'bg-sage' : 'bg-clay hover:bg-[#a9562f]'}`}
-              data-cursor="SEND"
             >
               {sent ? <Check size={18} strokeWidth={1.6} /> : <ArrowRight size={18} strokeWidth={1.6} />}
             </button>

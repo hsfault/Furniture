@@ -73,8 +73,12 @@ function Story({ progress }) {
   const m4 = useMemo(() => new THREE.Matrix4(), []);
   const v = useMemo(() => [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()], []);
 
+  const eased = useRef(progress.current);
+
   useFrame((state, dt) => {
-    const p = progress.current;
+    // Ease toward the scroll position so the log, planks and stool glide.
+    eased.current += (progress.current - eased.current) * Math.min(1, dt * 5);
+    const p = eased.current;
     const t = state.clock.elapsedTime;
     if (root.current) root.current.rotation.y += dt * (0.08 + (1 - smooth(0.5, 0.75, p)) * 0.12);
 
@@ -218,7 +222,7 @@ export default function LogStoryScene({ progress, active = true, mobile = false,
   return (
     <Canvas
       shadows
-      dpr={mobile ? 1 : [1, 1.5]}
+      dpr={mobile ? 1 : [1, 1.25]}
       frameloop={!active ? 'never' : reduced ? 'demand' : 'always'}
       camera={{ fov: 30, position: [2.6, 1.7, 3.1], near: 0.1, far: 30 }}
       gl={{ antialias: true, alpha: true }}
@@ -230,7 +234,7 @@ export default function LogStoryScene({ progress, active = true, mobile = false,
       <hemisphereLight args={['#FFF3E3', '#B79A7B', 0.6]} />
       <directionalLight position={[2.5, 4, 2]} intensity={2.1} castShadow shadow-mapSize={[1024, 1024]} color="#FFF0DC" />
       <Story progress={progress} />
-      <ContactShadows position={[0, 0.001, 0]} opacity={0.4} scale={4} blur={2.4} far={1.5} color="#3a2414" />
+      <ContactShadows position={[0, 0.001, 0]} opacity={0.4} scale={4} blur={2.4} far={1.5} resolution={256} color="#3a2414" />
     </Canvas>
   );
 }

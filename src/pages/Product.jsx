@@ -35,7 +35,7 @@ function Viewer({ product, wood, setWood, fabric, setFabric, onClose }) {
   }, []);
   return (
     <div ref={root} className="fixed inset-0 z-[96] flex flex-col bg-plaster md:flex-row" role="dialog" aria-modal="true" aria-label={`${product.name} in 3D`}>
-      <div className="relative min-h-0 flex-1" data-cursor="ROTATE">
+      <div className="relative min-h-0 flex-1">
         <Suspense fallback={null}>
           <ConfiguratorScene model={product.model} wood={wood} fabric={fabric} size={size} showDims={dims} mobile={isMobile()} reduced={reducedMotion} labels={`${product.name} in 3D. Drag to rotate.`} />
         </Suspense>
@@ -92,7 +92,7 @@ function Pairs({ items }) {
     return () => d.kill();
   }, []);
   return (
-    <div ref={wrap} className="overflow-hidden" data-cursor="DRAG">
+    <div ref={wrap} className="overflow-hidden">
       <ul ref={track} className="flex w-max gap-6 px-[var(--gutter)] pb-2">
         {items.map((p) => (
           <li key={p.slug} className="w-[min(70vw,300px)] shrink-0">
@@ -230,7 +230,7 @@ function ProductBody({ product }) {
               >
                 Add to cart
               </button>
-              <button type="button" className="btn-line w-full" onClick={() => setViewer(true)} data-cursor="ROTATE">
+              <button type="button" className="btn-line w-full" onClick={() => setViewer(true)}>
                 <Box size={16} strokeWidth={1.4} /> See it in 3D
               </button>
             </div>

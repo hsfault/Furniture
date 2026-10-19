@@ -17,7 +17,6 @@ export default function SoundToggle({ className = '', dark = false }) {
       aria-pressed={soundOn}
       aria-label={soundOn ? 'Turn sound off' : 'Turn sound on'}
       className={`tap inline-flex items-center justify-center gap-[3px] ${soundOn ? 'eq-on' : ''} ${className}`}
-      data-cursor="SOUND"
     >
       {[0, 1, 2].map((i) => (
         <span key={i} className={`eq-bar block h-3.5 w-[2px] rounded-full ${dark ? 'bg-linen' : 'bg-espresso'}`} />

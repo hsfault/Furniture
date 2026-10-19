@@ -40,6 +40,7 @@ export default function Hero() {
         start: 'top top',
         end: '+=150%',
         pin: pin.current,
+        anticipatePin: 1,
         scrub: true,
         onUpdate: (self) => {
           progress.current = self.progress;
@@ -79,27 +80,33 @@ export default function Hero() {
           </Suspense>
         </div>
         {/* soft vignette so the type always reads */}
-        <div className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(234,227,217,.75) 0%, rgba(234,227,217,0) 38%, rgba(234,227,217,0) 75%, rgba(234,227,217,.6) 100%)' }} />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(70% 55% at 18% 24%, rgba(236,229,219,.92) 0%, rgba(236,229,219,.7) 45%, rgba(236,229,219,0) 75%), linear-gradient(180deg, rgba(234,227,217,.6) 0%, rgba(234,227,217,0) 30%, rgba(234,227,217,0) 72%, rgba(234,227,217,.85) 100%)',
+          }}
+        />
 
         <div ref={text} className="wrap pointer-events-none absolute inset-x-0 top-[calc(var(--nav-h)+4vh)] md:top-[calc(var(--nav-h)+6vh)]">
           <h1 ref={title} className="display max-w-[11ch] text-hero text-espresso" style={{ visibility: introDone ? 'visible' : 'hidden' }}>
             Furniture that <i>stays.</i>
           </h1>
-          <p className="hero-fade mono mt-6 text-walnut">Solid wood · Carved in Chiniot · Finished in Lahore</p>
-          <p className="hero-fade mono mt-2 text-taupe md:hidden">{label}</p>
+          <p className="hero-fade mono mt-6 font-medium text-espresso">Solid wood · Carved in Chiniot · Finished in Lahore</p>
+          <p className="hero-fade mono mt-2 text-walnut md:hidden">{label}</p>
         </div>
 
-        <p className="hero-fade mono pointer-events-none absolute right-[var(--gutter)] top-[calc(var(--nav-h)+0.5rem)] hidden text-taupe md:block" aria-live="off">
+        <p className="hero-fade mono pointer-events-none absolute right-[var(--gutter)] top-[calc(var(--nav-h)+0.5rem)] hidden rounded-full bg-plaster/85 px-3 py-1 text-walnut md:block" aria-live="off">
           {label}
         </p>
 
         <div className="hero-foot wrap absolute inset-x-0 bottom-0 flex items-end justify-between pb-6 md:pb-8">
           <span className="w-14" aria-hidden="true" />
           <div className="hero-fade pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 md:bottom-8">
-            <span className="mono text-taupe">Scroll</span>
+            <span className="mono text-walnut">Scroll</span>
             <span className="scroll-cue block h-12 w-px bg-brass" />
           </div>
-          <TLink to="/shop" className="hero-fade uline text-[15px] text-espresso" data-cursor="VIEW">
+          <TLink to="/shop" className="hero-fade uline text-[15px] font-medium text-espresso">
             Explore the collection <span aria-hidden="true">→</span>
           </TLink>
         </div>

@@ -9,10 +9,12 @@ export default {
         linen: '#F7F3EE',
         espresso: '#2A1D15',
         walnut: '#5A3A25',
-        taupe: '#8F8073',
+        taupe: '#6E6256', // deepened from #8F8073 so small text reads (4.9:1 on plaster)
         sage: '#8C9A7E',
         clay: '#C2693E',
         brass: '#B8935A',
+        'brass-ink': '#7F6131', // brass for text on light grounds (4.8:1)
+        'sage-ink': '#5C6B4F', // sage for text on light grounds
         night: '#1B1612',
         teal: '#1F4E5A',
         oxblood: '#5E1F1F',

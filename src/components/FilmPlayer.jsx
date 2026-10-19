@@ -274,13 +274,14 @@ export default function FilmPlayer() {
       {active && <div className="film-grain" aria-hidden="true" />}
       <div
         className={`pointer-events-none fixed bottom-[calc(8vh+5.5rem)] left-[var(--gutter)] z-[131] max-w-[min(520px,80vw)] text-linen transition-all duration-700 ease-expo ${active ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
-        style={{ textShadow: '0 1px 16px rgba(27,22,18,.6)' }}
         aria-live="polite"
       >
+        <div className="rounded-sm bg-night/85 px-5 py-4 ring-1 ring-brass/30">
         <p className="display text-[clamp(1.4rem,3vw,2.4rem)] leading-none">
           {ch.id} — {ch.title}
         </p>
-        <p className="mono mt-2 text-linen/80">{ch.caption}</p>
+        <p className="mono mt-2 text-linen/85">{ch.caption}</p>
+        </div>
       </div>
 
       {/* the cut: three.js doors + title flying in from depth */}
@@ -304,7 +305,7 @@ export default function FilmPlayer() {
         }}
       >
         {listOpen && (
-          <ol className="absolute bottom-[calc(100%+10px)] left-0 w-[min(320px,calc(100vw-2rem))] rounded-[22px] border hairline bg-plaster/95 p-2 shadow-drawer backdrop-blur-md">
+          <ol className="absolute bottom-[calc(100%+10px)] left-0 w-[min(320px,calc(100vw-2rem))] rounded-[22px] border hairline bg-plaster p-2 shadow-drawer">
             {chapters.map((c, i) => (
               <li key={c.id}>
                 <button
@@ -326,7 +327,7 @@ export default function FilmPlayer() {
         )}
         <div
           className={`flex h-14 items-center overflow-hidden rounded-full transition-[width,background-color,box-shadow] duration-500 ease-expo ${
-            expanded ? 'w-[min(420px,calc(100vw-2rem))] border hairline bg-plaster/90 shadow-drawer backdrop-blur-md' : 'w-14 bg-transparent'
+            expanded ? 'w-[min(420px,calc(100vw-2rem))] border hairline bg-plaster/95 shadow-drawer' : 'w-14 bg-transparent'
           }`}
         >
           <button
@@ -334,7 +335,6 @@ export default function FilmPlayer() {
             onClick={() => (playing ? pause() : active ? (tl.current?.play(), setPlaying(true)) : play())}
             className={`relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-clay text-linen ${playing ? '' : 'breathe'}`}
             aria-label={playing ? 'Pause the film' : 'Play the house: a guided film of this page'}
-            data-cursor={playing ? 'PAUSE' : 'PLAY'}
           >
             {playing ? <Pause size={18} strokeWidth={1.6} /> : <Play size={18} strokeWidth={1.6} className="translate-x-[1px]" />}
             <svg viewBox="0 0 56 56" className="pointer-events-none absolute inset-0 -rotate-90" aria-hidden="true">

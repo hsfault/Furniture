@@ -111,7 +111,7 @@ export default function Visit() {
             <div ref={bloom} className="pointer-events-none absolute inset-0 opacity-0" style={{ background: 'radial-gradient(60% 50% at 50% 35%, rgba(255,236,200,.75), transparent 70%)', mixBlendMode: 'screen' }} />
             {booked && (
               <div className="absolute inset-x-0 bottom-[12%] flex justify-center px-8 text-center">
-                <p className="display rounded-sm bg-linen/85 px-5 py-4 text-[clamp(1.4rem,2.6vw,2.2rem)] leading-tight backdrop-blur-sm" role="status">
+                <p className="display rounded-sm bg-linen/95 px-5 py-4 text-[clamp(1.4rem,2.6vw,2.2rem)] leading-tight" role="status">
                   {booked}
                 </p>
               </div>
@@ -141,7 +141,7 @@ export default function Visit() {
               </a>
             </address>
             <div>
-              <p className={`mono inline-flex items-center gap-2 ${status.open ? 'text-sage' : 'text-clay'}`}>
+              <p className={`mono inline-flex items-center gap-2 ${status.open ? 'text-sage-ink' : 'text-clay'}`}>
                 <span className={`h-2 w-2 rounded-full ${status.open ? 'bg-sage' : 'bg-clay'}`} />
                 {status.open ? 'Open now' : 'Closed'}
               </p>

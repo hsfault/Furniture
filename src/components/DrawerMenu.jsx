@@ -35,7 +35,6 @@ function Drawer({ item, index, onPick, setRef }) {
           backgroundSize: 'cover, 900px auto, cover',
           boxShadow: 'inset 0 1px 0 rgba(255,235,200,.18), inset 0 -2px 0 rgba(0,0,0,.35), 0 2px 0 #1d120b',
         }}
-        data-cursor="OPEN"
       >
         <span className="flex items-baseline gap-4 md:gap-8">
           <span className="mono text-brass">{item.note}</span>

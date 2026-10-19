@@ -38,6 +38,7 @@ export default function LogToLivingRoom() {
         start: 'top top',
         end: '+=300%',
         pin: true,
+        anticipatePin: 1,
         scrub: true,
         onUpdate: (self) => {
           progress.current = self.progress;
@@ -80,13 +81,13 @@ export default function LogToLivingRoom() {
                     type="button"
                     onClick={() => goStep(i)}
                     aria-current={step === i ? 'step' : undefined}
-                    className={`block w-full py-3 text-left transition-colors duration-500 ${step === i ? 'text-espresso' : 'text-taupe/70 hover:text-taupe'}`}
+                    className={`block w-full py-3 text-left transition-colors duration-500 ${step === i ? 'text-espresso' : 'text-taupe hover:text-walnut'}`}
                   >
                     <span className="flex items-baseline gap-4">
                       <span className="font-mono text-[11px]">{s.n}</span>
                       <span className="display text-[clamp(1.5rem,2.6vw,2.2rem)] leading-tight">{s.title}</span>
                     </span>
-                    <span className={`block overflow-hidden pl-9 transition-[max-height,opacity] duration-700 ease-expo ${step === i ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0 md:max-h-32 md:opacity-60'}`}>
+                    <span className={`block overflow-hidden pl-9 transition-[max-height,opacity] duration-700 ease-expo ${step === i ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0 md:max-h-32 md:opacity-80'}`}>
                       <span className="mt-1 block text-[15px]">{s.copy}</span>
                       <span className="mt-1 block text-[13px] text-taupe">{s.sub}</span>
                     </span>
@@ -96,7 +97,7 @@ export default function LogToLivingRoom() {
             </ol>
           </div>
           <div className="md:col-span-7">
-            <LazyMount className="relative h-[58vh] md:h-[82vh]" data-cursor="WATCH">
+            <LazyMount className="relative h-[58vh] md:h-[82vh]">
               {(visible) => (
                 <Suspense fallback={null}>
                   <LogStoryScene progress={progress} active={visible} mobile={mobile} reduced={false} />

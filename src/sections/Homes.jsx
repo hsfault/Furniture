@@ -24,7 +24,6 @@ function Polaroid({ home, innerRef, cardRef, onFlip, style, className = '' }) {
           onFlip();
         }
       }}
-      data-cursor="DRAG"
     >
       <div ref={cardRef} className="preserve-3d relative">
         <div className="backface-hidden bg-[#FBF8F3] p-[7%] pb-[30%] shadow-[0_14px_30px_-12px_rgba(0,0,0,.6)]">

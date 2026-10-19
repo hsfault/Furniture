@@ -91,7 +91,7 @@ export default function CartDrawer() {
   if (!mounted) return null;
   return (
     <div className="fixed inset-0 z-[80]" role="dialog" aria-modal="true" aria-label="Your cart">
-      <div ref={backdrop} className="absolute inset-0 bg-espresso/50 backdrop-blur-[2px]" onClick={() => setCart(false)} />
+      <div ref={backdrop} className="absolute inset-0 bg-espresso/60" onClick={() => setCart(false)} />
       <div ref={panel} className="absolute inset-x-0 bottom-0 flex h-[100svh] flex-col md:inset-x-[max(2rem,calc((100vw-1100px)/2))] md:h-[70vh]">
         {/* the drawer front */}
         <div

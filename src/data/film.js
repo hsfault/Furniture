@@ -8,7 +8,7 @@ export const chapters = [
   { id: '03', title: 'Rooms', caption: 'Nine rooms we have furnished, floating at their own pace.', duration: 6 },
   { id: '04', title: 'A Day at Home', caption: 'Seven in the morning to eleven at night, in one long glance.', duration: 9 },
   { id: '05', title: 'Make It Yours', caption: 'One chair, four woods, four cloths, two widths.', duration: 4 },
-  { id: '06', title: 'The Library', caption: 'Every collection is a book on one walnut shelf.', duration: 4 },
+  { id: '06', title: 'The Sample Fan', caption: 'Eight collections on one brass pivot, turned like a dial.', duration: 4 },
   { id: '07', title: 'Log to Living Room', caption: 'Eighteen months of drying, six planks, not a single screw.', duration: 9 },
   { id: '08', title: 'The Collection', caption: 'Every piece we make, laid out on one endless table.', duration: 4 },
   { id: '09', title: 'Homes', caption: 'Photographs our customers sent back, years later.', duration: 4 },

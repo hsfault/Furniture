@@ -40,7 +40,7 @@ export function inkWords(el, { start = 'top 80%', end = 'bottom 45%', skip = '.n
   if (reducedMotion) return split;
   gsap.fromTo(
     words,
-    { opacity: 0.15 },
+    { opacity: 0.24 },
     { opacity: 1, ease: 'none', stagger: 0.1, scrollTrigger: { trigger: el, start, end, scrub: true } },
   );
   return split;

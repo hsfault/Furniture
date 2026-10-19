@@ -109,7 +109,7 @@ export default function ConfiguratorScene({
   return (
     <Canvas
       shadows
-      dpr={mobile ? 1 : [1, 1.5]}
+      dpr={mobile ? 1 : [1, 1.25]}
       frameloop={!active ? 'never' : reduced ? 'demand' : 'always'}
       camera={{ fov: 32, position: [2.2, 1.35, 2.6], near: 0.1, far: 30 }}
       gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
@@ -141,7 +141,7 @@ export default function ConfiguratorScene({
           <DimensionLines w={bw} d={bd} h={bh} show={showDims} />
         </group>
       </Turntable>
-      <ContactShadows position={[0, 0.001, 0]} opacity={0.45} scale={3} blur={2.2} far={1.2} resolution={512} color="#3a2414" />
+      <ContactShadows position={[0, 0.001, 0]} opacity={0.45} scale={3} blur={2.2} far={1.2} resolution={256} color="#3a2414" />
       <OrbitControls
         makeDefault
         target={[0, model === 'lamp' ? 0.5 : 0.35, 0]}
