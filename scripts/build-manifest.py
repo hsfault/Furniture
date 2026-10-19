@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Write scripts/image-manifest.json: every photo and texture the TAAQ site uses.
 
-Run once after editing a prompt, then generate with `npm run images`
+Run once after editing a prompt (add --with-textures to include the 3D
+texture JPGs), then generate with `npm run images`
 (which skips files that already exist, so it is safe to re-run).
 """
 import json
+import sys
 from pathlib import Path
 
 PHOTO = (", architectural interior photography, soft natural window light, warm lime-plaster "
@@ -12,6 +14,10 @@ PHOTO = (", architectural interior photography, soft natural window light, warm 
          "beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, "
          "realistic, no people's faces, no text, no watermark, no logo")
 TEXTURE = "seamless tileable texture, top view, flat even lighting, no shadows, high detail, "
+# Product shots skip the interior suffix: with it, the free model paints an empty room.
+PRODUCT = ("product catalogue photograph of {}, alone, standing on the floor against a plain warm "
+           "beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, "
+           "minimal, no other furniture, photorealistic, no text, no watermark")
 
 ROOMS = [
     ("living room with a cream boucle lounge chair and a round walnut side table", 1200, 1500),
@@ -82,20 +88,21 @@ HOMES = [
     "a bedroom with a low walnut bed and a carved brass-bound chest",
     "an entrance hall with a carved console, a brass mirror and fresh jasmine",
 ]
+# Hands only: the model draws faces unless the frame is cropped at the wrists.
 CRAFTSMEN = [
-    "an older craftsman's weathered hands carving sheesham with a chisel at a workbench, apron, face out of frame",
-    "an older craftsman's hands weaving cane onto a stool frame, worn apron, face turned away",
-    "an older craftsman's hands rubbing oil into a walnut tabletop with a cloth, face in shadow",
+    "close-up photograph of an old craftsman's weathered hands holding a chisel against a sheesham plank on a workbench, cropped at the wrists, no face, no head, wood shavings, warm window light, photorealistic",
+    "close-up photograph of an old craftsman's weathered hands weaving cane strands onto a wooden stool frame, cropped at the wrists, no face, no head, warm window light, photorealistic",
+    "close-up photograph of an old craftsman's weathered hands rubbing oil into a walnut tabletop with a cotton cloth, cropped at the wrists, no face, no head, warm window light, photorealistic",
 ]
 OTHER = [
     ("images/manifesto-1.jpg", "close-up of a chisel carving a walnut board, wood shavings, macro", 600, 400),
     ("images/manifesto-2.jpg", "close-up of hands oiling a walnut surface with a cotton cloth, glistening grain", 600, 400),
     ("images/manifesto-3.jpg", "an old worn leather and wood armchair standing in a single sunbeam", 600, 400),
-    ("images/library-workshop.jpg", "the Chiniot woodworking workshop, carved doors in progress, sawdust floating in sunbeams", 800, 600),
-    ("images/visit-door-left.jpg", "the left half of an ornate hand-carved Chiniot sheesham wooden door, front view, flat, deep floral relief carving, brass studs", 800, 1600),
-    ("images/visit-door-right.jpg", "the right half of an ornate hand-carved Chiniot sheesham wooden door, front view, flat, deep floral relief carving, brass studs", 800, 1600),
+    ("images/library-workshop.jpg", "a Chiniot woodworking workshop with a long workbench, hand tools on the wall, stacked sheesham planks, sawdust floating in sunbeams", 800, 600),
+    ("images/visit-door-left.jpg", "front view of one tall ornate hand-carved dark sheesham wooden door panel, deep floral relief carving, brass studs, the carved door fills the entire frame edge to edge, flat orthographic, no room, no floor", 800, 1600),
+    ("images/visit-door-right.jpg", "front view of one tall ornate hand-carved dark sheesham wooden door panel, deep floral relief carving, brass studs, the carved door fills the entire frame edge to edge, flat orthographic, no room, no floor", 800, 1600),
     ("images/visit-showroom.jpg", "a gallery-like furniture showroom with arched niches, plinths with single chairs and tables, skylight", 1600, 1100),
-    ("images/preloader-walnut.jpg", "walnut wood grain macro, rich dark brown figure, oiled", 1024, 1024),
+    ("images/preloader-walnut.jpg", "extreme close-up macro photograph of oiled dark chocolate-brown american walnut wood grain, deep brown not red, flat surface filling the entire frame", 1024, 1024),
 ]
 TEXTURES = {
     "wood-walnut": "american walnut wood planks, straight grain, dark brown, oiled",
@@ -119,28 +126,30 @@ def main():
     jobs = []
     seed = 100
 
-    def add(out, prompt, w, h, suffix=PHOTO):
+    def add(out, prompt, w, h, suffix=PHOTO, raw=False):
         nonlocal seed
         seed += 1
-        jobs.append({"prompt": prompt + suffix, "out": out, "width": w, "height": h, "seed": seed})
+        jobs.append({"prompt": prompt if raw else prompt + suffix, "out": out, "width": w, "height": h, "seed": seed})
 
     for i, (p, w, h) in enumerate(ROOMS, 1):
         add(f"images/room-{i}.jpg", p, w, h)
     for name, p in DAY:
         add(f"images/day-{name}.jpg", "the same home through the day: " + p, 1600, 1000)
     for slug, p in PRODUCTS.items():
-        add(f"images/product-{slug}.jpg", p + ", a single piece of furniture on a plain warm plaster "
-            "background, studio-lit, centered, full piece in frame", 1200, 1500)
+        add(f"images/product-{slug}.jpg", PRODUCT.format(p), 1200, 1500, raw=True)
     for out, p, w, h in OTHER:
-        add(out, p, w, h)
+        add(out, p, w, h, raw=out.endswith("preloader-walnut.jpg"))
     for name, p in COLLECTIONS.items():
         add(f"images/collection-{name}.jpg", p, 900, 1100)
     for i, p in enumerate(HOMES, 1):
         add(f"images/home-{i}.jpg", "a real-looking furnished Pakistani home, " + p, 1000, 1000)
     for i, p in enumerate(CRAFTSMEN, 1):
-        add(f"images/craftsman-{i}.jpg", p, 900, 1200)
-    for name, p in TEXTURES.items():
-        add(f"textures/{name}.jpg", TEXTURE + p, 1024, 1024, suffix=", no text, no watermark")
+        add(f"images/craftsman-{i}.jpg", p, 900, 1200, raw=True)
+    # Textures are opt-in: the free model draws them as tiles or objects, and
+    # src/three/materials.js already paints seamless ones in the browser.
+    if "--with-textures" in sys.argv:
+        for name, p in TEXTURES.items():
+            add(f"textures/{name}.jpg", TEXTURE + p, 1024, 1024, suffix=", no text, no watermark")
 
     out = Path(__file__).with_name("image-manifest.json")
     out.write_text(json.dumps(jobs, indent=1) + "\n")

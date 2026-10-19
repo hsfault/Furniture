@@ -98,203 +98,203 @@
   "seed": 114
  },
  {
-  "prompt": "a low lounge chair with thick cream boucle seat and back cushions on a low walnut frame with tapered legs, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a low lounge chair with thick cream boucle seat and back cushions on a low walnut frame with tapered legs, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-dune-lounge-chair.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 115
  },
  {
-  "prompt": "a long three-seat sofa with plump cream boucle cushions on a low walnut plinth frame, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a long three-seat sofa with plump cream boucle cushions on a low walnut plinth frame, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-dune-sofa.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 116
  },
  {
-  "prompt": "a carved sheesham armchair with an arched latticed back and a sage linen seat, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a carved sheesham armchair with an arched latticed back and a sage linen seat, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-jharoka-armchair.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 117
  },
  {
-  "prompt": "a solid walnut dining chair with a woven cane backrest and curved top rail, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a solid walnut dining chair with a woven cane backrest and curved top rail, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-noor-dining-chair.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 118
  },
  {
-  "prompt": "a white oak desk chair with a curved spindle back and leather seat, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a white oak desk chair with a curved spindle back and leather seat, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-kursi-desk-chair.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 119
  },
  {
-  "prompt": "a small four-legged sheesham stool with a woven cane seat and mortise and tenon joints, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a small four-legged sheesham stool with a woven cane seat and mortise and tenon joints, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-ravi-stool.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 120
  },
  {
-  "prompt": "a round walnut side table with three splayed tapered legs, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a round walnut side table with three splayed tapered legs, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-arc-side-table.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 121
  },
  {
-  "prompt": "a long solid sheesham dining table with thick trestle legs, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a long solid sheesham dining table with thick trestle legs, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-qila-dining-table.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 122
  },
  {
-  "prompt": "a low rectangular walnut coffee table with rounded edges and a lower shelf, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a low rectangular walnut coffee table with rounded edges and a lower shelf, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-chabutra-coffee-table.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 123
  },
  {
-  "prompt": "a white oak writing desk with slim tapered legs and two small drawers with brass pulls, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a white oak writing desk with slim tapered legs and two small drawers with brass pulls, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-kalam-writing-desk.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 124
  },
  {
-  "prompt": "a hand-carved sheesham console table with a crescent-moon fretwork apron, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a hand-carved sheesham console table with a crescent-moon fretwork apron, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-chaand-console.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 125
  },
  {
-  "prompt": "a tall walnut bookcase with arched niches, a few books and ceramics, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a tall walnut bookcase with arched niches, a few books and ceramics, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-taaq-bookcase.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 126
  },
  {
-  "prompt": "a traditional sheesham storage chest bound with aged brass corners and studs, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a traditional sheesham storage chest bound with aged brass corners and studs, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-sandook-chest.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 127
  },
  {
-  "prompt": "a tall two-door ebonised ash wardrobe with carved panels and brass handles, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a tall two-door ebonised ash wardrobe with carved panels and brass handles, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-almari-wardrobe.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 128
  },
  {
-  "prompt": "a long walnut sideboard with woven cane sliding doors on slim legs, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a long walnut sideboard with woven cane sliding doors on slim legs, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-rasta-sideboard.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 129
  },
  {
-  "prompt": "a low white oak children's bookshelf with rounded corners, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a low white oak children's bookshelf with rounded corners, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-kitab-low-shelf.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 130
  },
  {
-  "prompt": "a low walnut platform bed with a slatted headboard and natural linen bedding, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a low walnut platform bed with a slatted headboard and natural linen bedding, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-neend-bed.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 131
  },
  {
-  "prompt": "a white oak baby cot with turned spindles and rounded rails, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a white oak baby cot with turned spindles and rounded rails, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-lori-cot.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 132
  },
  {
-  "prompt": "a small walnut nightstand with one drawer and a cane-front cupboard, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a small walnut nightstand with one drawer and a cane-front cupboard, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-sirhana-nightstand.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 133
  },
  {
-  "prompt": "a slim brass floor lamp with a thin ring-shaped shade glowing warm, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a slim brass floor lamp with a thin ring-shaped shade glowing warm, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-halo-floor-lamp.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 134
  },
  {
-  "prompt": "a turned walnut table lamp with a pleated linen shade, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a turned walnut table lamp with a pleated linen shade, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-diya-table-lamp.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 135
  },
  {
-  "prompt": "a woven cane pendant lamp shaped like a lantern, glowing warm, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a woven cane pendant lamp shaped like a lantern, glowing warm, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-fanoos-pendant.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 136
  },
  {
-  "prompt": "an aged brass wall sconce with a frosted glass cup, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of an aged brass wall sconce with a frosted glass cup, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-shamaa-sconce.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 137
  },
  {
-  "prompt": "a long low bench with a woven cane seat on a solid walnut frame, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a long low bench with a woven cane seat on a solid walnut frame, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-sehan-cane-bench.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 138
  },
  {
-  "prompt": "a traditional charpai daybed with turned sheesham legs and hand-woven jute and cane seat, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a traditional charpai daybed with turned sheesham legs and hand-woven jute and cane seat, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-charpai-daybed.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 139
  },
  {
-  "prompt": "a reclining outdoor lounger in teak with a woven cane back, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a reclining outdoor lounger in teak with a woven cane back, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-veranda-lounger.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 140
  },
  {
-  "prompt": "a large rounded terracotta clay vase with a matte glaze, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a large rounded terracotta clay vase with a matte glaze, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-matka-vase.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 141
  },
  {
-  "prompt": "a round wall mirror in a thick aged brass frame, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a round wall mirror in a thick aged brass frame, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-surma-mirror.jpg",
   "width": 1200,
   "height": 1500,
   "seed": 142
  },
  {
-  "prompt": "a round walnut serving tray with raised edges and brass handles, a single piece of furniture on a plain warm plaster background, studio-lit, centered, full piece in frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "product catalogue photograph of a round walnut serving tray with raised edges and brass handles, alone, standing on the floor against a plain warm beige plaster wall, studio lighting, soft shadow, centered, whole piece in frame, minimal, no other furniture, photorealistic, no text, no watermark",
   "out": "images/product-thaal-tray.jpg",
   "width": 1200,
   "height": 1500,
@@ -322,21 +322,21 @@
   "seed": 146
  },
  {
-  "prompt": "the Chiniot woodworking workshop, carved doors in progress, sawdust floating in sunbeams, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "a Chiniot woodworking workshop with a long workbench, hand tools on the wall, stacked sheesham planks, sawdust floating in sunbeams, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
   "out": "images/library-workshop.jpg",
   "width": 800,
   "height": 600,
   "seed": 147
  },
  {
-  "prompt": "the left half of an ornate hand-carved Chiniot sheesham wooden door, front view, flat, deep floral relief carving, brass studs, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "front view of one tall ornate hand-carved dark sheesham wooden door panel, deep floral relief carving, brass studs, the carved door fills the entire frame edge to edge, flat orthographic, no room, no floor, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
   "out": "images/visit-door-left.jpg",
   "width": 800,
   "height": 1600,
   "seed": 148
  },
  {
-  "prompt": "the right half of an ornate hand-carved Chiniot sheesham wooden door, front view, flat, deep floral relief carving, brass studs, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "front view of one tall ornate hand-carved dark sheesham wooden door panel, deep floral relief carving, brass studs, the carved door fills the entire frame edge to edge, flat orthographic, no room, no floor, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
   "out": "images/visit-door-right.jpg",
   "width": 800,
   "height": 1600,
@@ -350,7 +350,7 @@
   "seed": 150
  },
  {
-  "prompt": "walnut wood grain macro, rich dark brown figure, oiled, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "extreme close-up macro photograph of oiled dark chocolate-brown american walnut wood grain, deep brown not red, flat surface filling the entire frame",
   "out": "images/preloader-walnut.jpg",
   "width": 1024,
   "height": 1024,
@@ -469,122 +469,24 @@
   "seed": 167
  },
  {
-  "prompt": "an older craftsman's weathered hands carving sheesham with a chisel at a workbench, apron, face out of frame, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "close-up photograph of an old craftsman's weathered hands holding a chisel against a sheesham plank on a workbench, cropped at the wrists, no face, no head, wood shavings, warm window light, photorealistic",
   "out": "images/craftsman-1.jpg",
   "width": 900,
   "height": 1200,
   "seed": 168
  },
  {
-  "prompt": "an older craftsman's hands weaving cane onto a stool frame, worn apron, face turned away, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "close-up photograph of an old craftsman's weathered hands weaving cane strands onto a wooden stool frame, cropped at the wrists, no face, no head, warm window light, photorealistic",
   "out": "images/craftsman-2.jpg",
   "width": 900,
   "height": 1200,
   "seed": 169
  },
  {
-  "prompt": "an older craftsman's hands rubbing oil into a walnut tabletop with a cloth, face in shadow, architectural interior photography, soft natural window light, warm lime-plaster walls, calm minimal styling, solid wood furniture, muted earthy palette of plaster beige, walnut brown, sage and terracotta, shot on medium format, 35mm, high detail, realistic, no people's faces, no text, no watermark, no logo",
+  "prompt": "close-up photograph of an old craftsman's weathered hands rubbing oil into a walnut tabletop with a cotton cloth, cropped at the wrists, no face, no head, warm window light, photorealistic",
   "out": "images/craftsman-3.jpg",
   "width": 900,
   "height": 1200,
   "seed": 170
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, american walnut wood planks, straight grain, dark brown, oiled, no text, no watermark",
-  "out": "textures/wood-walnut.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 171
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, sheesham rosewood, golden brown with dark streaks, straight grain, no text, no watermark",
-  "out": "textures/wood-sheesham.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 172
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, white oak wood, pale blond, fine straight grain, matte, no text, no watermark",
-  "out": "textures/wood-oak.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 173
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, ebonised ash wood, near black, visible open grain, no text, no watermark",
-  "out": "textures/wood-ash-ebonised.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 174
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, end grain of a sawn tree log, concentric growth rings, sheesham, no text, no watermark",
-  "out": "textures/wood-endgrain-rings.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 175
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, rough tree bark, grey brown, deep vertical fissures, no text, no watermark",
-  "out": "textures/bark-sheesham.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 176
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, cream boucle fabric, looped textured yarn, no text, no watermark",
-  "out": "textures/fabric-boucle-cream.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 177
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, sage green linen fabric, fine slub weave, no text, no watermark",
-  "out": "textures/fabric-linen-sage.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 178
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, rust orange cotton velvet fabric, soft pile, no text, no watermark",
-  "out": "textures/fabric-velvet-rust.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 179
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, charcoal grey wool fabric, twill weave, no text, no watermark",
-  "out": "textures/fabric-wool-charcoal.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 180
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, hand-woven rattan cane webbing, octagonal open weave, natural honey colour, no text, no watermark",
-  "out": "textures/cane-weave.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 181
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, warm beige lime plaster wall, subtle trowel marks, no text, no watermark",
-  "out": "textures/plaster-wall.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 182
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, pale terrazzo floor, cream base with small beige, grey and terracotta chips, no text, no watermark",
-  "out": "textures/terrazzo-floor.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 183
- },
- {
-  "prompt": "seamless tileable texture, top view, flat even lighting, no shadows, high detail, brushed aged brass metal, fine horizontal lines, no text, no watermark",
-  "out": "textures/brass-brushed.jpg",
-  "width": 1024,
-  "height": 1024,
-  "seed": 184
  }
 ]
