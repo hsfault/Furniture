@@ -65,7 +65,8 @@ def free_url():
     return os.environ.get("POLLINATIONS_FREE_URL", "https://image.pollinations.ai").rstrip("/")
 
 
-FREE_GAP = 8  # seconds between keyless requests; the free endpoint is rate limited
+FREE_GAP = 12  # seconds between keyless requests; the free endpoint is rate limited
+FREE_BACKOFF = (60, 120, 240, 480)  # its 402s are a burst limit that clears with time
 FREE_STRIP = 0.07  # extra height requested, then cut off: the free tier stamps a logo bottom-right
 
 
@@ -164,10 +165,20 @@ def generate(prompt, out, width=1024, height=1024, model=None, seed=None,
         gap = FREE_GAP - (time.time() - _free["last"])
         if gap > 0:
             time.sleep(gap)
-        try:
-            data = fetch(f"{free_url()}/prompt/{quoted}?{urllib.parse.urlencode(free_params)}", None, prompt)
-        finally:
-            _free["last"] = time.time()
+        url = f"{free_url()}/prompt/{quoted}?{urllib.parse.urlencode(free_params)}"
+        for wait in (*FREE_BACKOFF, None):
+            try:
+                data = fetch(url, None, prompt)
+                break
+            except Unreachable:
+                raise
+            except OutOfBalance:
+                if wait is None:
+                    raise
+                print(f"  free tier is throttling (402), waiting {wait}s", file=sys.stderr)
+                time.sleep(wait)
+            finally:
+                _free["last"] = time.time()
         data = trim_free_image(data, width, height)
 
     out.write_bytes(data)
