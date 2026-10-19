@@ -57,8 +57,53 @@ class OutOfBalance(RuntimeError):
     """The account has no pollen left; every further request will fail too."""
 
 
+class Unreachable(OutOfBalance):
+    """A proxy or firewall refuses the host; retrying will not help."""
+
+
+def free_url():
+    return os.environ.get("POLLINATIONS_FREE_URL", "https://image.pollinations.ai").rstrip("/")
+
+
+FREE_GAP = 8  # seconds between keyless requests; the free endpoint is rate limited
+_free = {"on": False, "allowed": True, "last": 0.0}
+
+
+def fetch(url, api_key, label):
+    """GET an image, retrying transient failures. Raises OutOfBalance on HTTP 402."""
+    for attempt in range(1, RETRIES + 1):
+        try:
+            data, ctype = request(url, api_key)
+            if not ctype.startswith("image/"):
+                raise RuntimeError(f"expected an image, got {ctype}: {data[:200]!r}")
+            return data
+        except urllib.error.HTTPError as e:
+            body = e.read()[:300].decode(errors="replace")
+            if e.code == 402:
+                raise OutOfBalance(f"HTTP 402 (out of pollen) for {label!r}: {body}") from None
+            if e.code == 429 and attempt < RETRIES:
+                wait = 20 * attempt
+                print(f"  rate limited, waiting {wait}s", file=sys.stderr)
+                time.sleep(wait)
+                continue
+            # Auth and bad-request errors won't fix themselves on retry.
+            if e.code in (400, 401, 403, 404) or attempt == RETRIES:
+                raise RuntimeError(f"HTTP {e.code} for {label!r}: {body}") from None
+        except (urllib.error.URLError, TimeoutError, RuntimeError) as e:
+            if "Tunnel connection failed" in str(e):
+                host = urllib.parse.urlsplit(url).hostname
+                raise Unreachable(f"{host} is blocked by the network ({e}); "
+                                  f"allow it in the environment's network settings") from None
+            if attempt == RETRIES:
+                raise RuntimeError(f"failed for {label!r}: {e}") from None
+        wait = 2 ** attempt
+        print(f"  retrying in {wait}s (attempt {attempt}/{RETRIES})", file=sys.stderr)
+        time.sleep(wait)
+
+
 def generate(prompt, out, width=1024, height=1024, model=None, seed=None,
              quality=None, api_key=None):
+    """Paid API first; once it reports no pollen, the keyless free endpoint."""
     params = {"width": width, "height": height}
     if model:
         params["model"] = model
@@ -66,36 +111,38 @@ def generate(prompt, out, width=1024, height=1024, model=None, seed=None,
         params["seed"] = seed
     if quality:
         params["quality"] = quality
-    url = (f"{base_url()}/image/{urllib.parse.quote(prompt, safe='')}"
-           f"?{urllib.parse.urlencode(params)}")
+    quoted = urllib.parse.quote(prompt, safe="")
 
     out = Path(out)
     if not out.is_absolute():
         out = DEFAULT_OUT_DIR / out
     out.parent.mkdir(parents=True, exist_ok=True)
 
-    for attempt in range(1, RETRIES + 1):
+    data = None
+    if not _free["on"]:
         try:
-            data, ctype = request(url, api_key)
-            if not ctype.startswith("image/"):
-                raise RuntimeError(f"expected an image, got {ctype}: {data[:200]!r}")
-            out.write_bytes(data)
-            print(f"saved {out.relative_to(REPO_ROOT) if out.is_relative_to(REPO_ROOT) else out} "
-                  f"({len(data) // 1024} KB)")
-            return out
-        except urllib.error.HTTPError as e:
-            body = e.read()[:300].decode(errors="replace")
-            if e.code == 402:
-                raise OutOfBalance(f"HTTP 402 (out of pollen) for {prompt!r}: {body}") from None
-            # Auth and bad-request errors won't fix themselves on retry.
-            if e.code in (400, 401, 402, 403, 404) or attempt == RETRIES:
-                raise RuntimeError(f"HTTP {e.code} for {prompt!r}: {body}") from None
-        except (urllib.error.URLError, TimeoutError, RuntimeError) as e:
-            if attempt == RETRIES:
-                raise RuntimeError(f"failed for {prompt!r}: {e}") from None
-        wait = 2 ** attempt
-        print(f"  retrying in {wait}s (attempt {attempt}/{RETRIES})", file=sys.stderr)
-        time.sleep(wait)
+            data = fetch(f"{base_url()}/image/{quoted}?{urllib.parse.urlencode(params)}", api_key, prompt)
+        except OutOfBalance:
+            if not _free["allowed"]:
+                raise
+            _free["on"] = True
+            print(f"out of pollen; switching to the free endpoint {free_url()}", file=sys.stderr)
+    if data is None:
+        free_params = {"width": width, "height": height, "nologo": "true", "model": "flux"}
+        if seed is not None:
+            free_params["seed"] = seed
+        gap = FREE_GAP - (time.time() - _free["last"])
+        if gap > 0:
+            time.sleep(gap)
+        try:
+            data = fetch(f"{free_url()}/prompt/{quoted}?{urllib.parse.urlencode(free_params)}", None, prompt)
+        finally:
+            _free["last"] = time.time()
+
+    out.write_bytes(data)
+    print(f"saved {out.relative_to(REPO_ROOT) if out.is_relative_to(REPO_ROOT) else out} "
+          f"({len(data) // 1024} KB)")
+    return out
 
 
 def run_batch(path, defaults, api_key, skip_existing=False):
@@ -142,6 +189,8 @@ def main():
     p.add_argument("-s", "--seed", type=int, help="seed for reproducible output")
     p.add_argument("-q", "--quality", choices=["low", "medium", "high", "hd"])
     p.add_argument("--batch", help="JSON file with a list of image jobs")
+    p.add_argument("--no-free", action="store_true",
+                   help="don't fall back to the keyless free endpoint when out of pollen")
     p.add_argument("--skip-existing", action="store_true",
                    help="in --batch mode, skip jobs whose output file already exists")
     p.add_argument("--list-models", action="store_true", help="print available image models")
@@ -159,6 +208,7 @@ def main():
         print("note: POLLINATIONS_API_KEY is not set; this only works if a network proxy "
               "injects it. Get a key at https://enter.pollinations.ai/keys", file=sys.stderr)
 
+    _free["allowed"] = not args.no_free
     defaults = {"width": args.width, "height": args.height, "model": args.model,
                 "seed": args.seed, "quality": args.quality}
 
@@ -170,7 +220,7 @@ def main():
     out = args.out or f"{int(time.time())}.jpg"
     try:
         generate(args.prompt, out, api_key=api_key, **defaults)
-    except RuntimeError as e:
+    except RuntimeError as e:  # includes OutOfBalance / Unreachable
         print(f"error: {e}", file=sys.stderr)
         return 1
     return 0

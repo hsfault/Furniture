@@ -13,7 +13,8 @@ Generate images with `scripts/pollinations.py` (Python stdlib, no install needed
 
 - Needs `POLLINATIONS_API_KEY` in the environment or in `.env` (see `.env.example`), unless a network proxy injects it (the cloud environment does).
 - Every image the site uses is listed in `scripts/image-manifest.json`, built by `scripts/build-manifest.py` (edit prompts there, then re-run it). Each job has a fixed seed.
-- `npm run images` = `python3 scripts/pollinations.py --batch scripts/image-manifest.json --skip-existing`: safe to re-run, only fetches what is missing, retries a failed job once with a new seed, and stops at once on HTTP 402 (out of pollen).
+- `npm run images` = `python3 scripts/pollinations.py --batch scripts/image-manifest.json --skip-existing`: safe to re-run, only fetches what is missing, and retries a failed job once with a new seed.
+- When the paid API (`gen.pollinations.ai`) answers HTTP 402 (out of pollen), the script switches to the keyless free endpoint `image.pollinations.ai` (flux, ~8 s between requests, waits out 429s). The cloud environment's network policy must allow that host too. `--no-free` turns the fallback off. If neither host works, the batch stops at once and lists what is missing.
 - Single image: `python3 scripts/pollinations.py "<prompt>" -o images/<name>.jpg -W 1600 -H 900 --seed 1`. Output paths are relative to `public/`.
 - Cheapest decent model: `POLLINATIONS_MODEL=flux` (~0.002 pollen per image). `--list-models` shows the rest.
 - Missing images degrade gracefully: photos show a plaster placeholder with their caption, and every 3D texture has a procedural canvas twin in `src/three/materials.js`.
