@@ -9,6 +9,7 @@ import { products, categories, matchesCategory } from '../data/products.js';
 import { collections } from '../data/collections.js';
 import { woods } from '../data/brand.js';
 import { useUI } from '../store/ui.js';
+import { whoosh } from '../lib/sound.js';
 import { TLink } from '../components/DoorTransition.jsx';
 import GLImage from '../gl/GLImage.jsx';
 
@@ -90,6 +91,7 @@ export default function Shop() {
   useGSAP(() => flipChars(title.current, { trigger: false, delay: 0.1 }), { scope: root });
 
   const change = (fn) => (v) => {
+    whoosh(0.6, 0.45, true);
     if (!reducedMotion) flipState.current = Flip.getState(root.current.querySelectorAll('.shop-row'));
     fn(v);
   };

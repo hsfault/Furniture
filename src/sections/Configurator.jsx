@@ -3,7 +3,7 @@ import { useGSAP } from '../lib/gsap.js';
 import { flipChars } from '../lib/splitReveal.js';
 import { reducedMotion, isMobile } from '../lib/env.js';
 import { flyToCart } from '../lib/flyToCart.js';
-import { playClick } from '../lib/sound.js';
+import { puff, slide, tick } from '../lib/sound.js';
 import { woods, fabrics } from '../data/brand.js';
 import { bySlug } from '../data/products.js';
 import { useCart, priceFor } from '../store/cart.js';
@@ -61,8 +61,8 @@ export default function Configurator() {
 
   useGSAP(() => flipChars(title.current), { scope: root });
 
-  const pick = (fn) => (v) => {
-    playClick();
+  const pick = (fn, sound) => (v) => {
+    sound?.();
     fn(v);
   };
 
@@ -105,7 +105,7 @@ export default function Configurator() {
             </Row>
             <Row title="Fabric" value={f.name}>
               {fabrics.map((x) => (
-                <Swatch key={x.id} label={x.name} color={x.hex} active={fabric === x.id} onClick={() => pick(setFabric)(x.id)} />
+                <Swatch key={x.id} label={x.name} color={x.hex} active={fabric === x.id} onClick={() => pick(setFabric, () => puff())(x.id)} />
               ))}
             </Row>
             <Row title="Size" value={size === 'wide' ? 'Wide · W 105 cm' : 'Single · W 78 cm'}>
@@ -115,7 +115,7 @@ export default function Configurator() {
                   type="button"
                   role="radio"
                   aria-checked={size === s}
-                  onClick={() => pick(setSize)(s)}
+                  onClick={() => pick(setSize, () => slide(0.6, s === 'wide'))(s)}
                   className={`min-h-[44px] shrink-0 rounded-full border px-6 text-[15px] capitalize transition-colors duration-300 ${size === s ? 'border-espresso bg-espresso text-linen' : 'border-espresso/25 hover:border-espresso'}`}
                 >
                   {s}
@@ -128,7 +128,7 @@ export default function Configurator() {
                 type="button"
                 role="switch"
                 aria-checked={dims}
-                onClick={() => pick(setDims)(!dims)}
+                onClick={() => pick(setDims, () => tick(1.4))(!dims)}
                 className="tap flex items-center justify-end"
                 aria-label="Show dimensions"
               >

@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { gsap, Draggable, useGSAP } from '../lib/gsap.js';
 import { flipChars } from '../lib/splitReveal.js';
 import { reducedMotion, isMobile } from '../lib/env.js';
-import { playClick } from '../lib/sound.js';
+import { tick } from '../lib/sound.js';
 import { formatPrice } from '../lib/format.js';
 import { collections, collectionStats } from '../data/collections.js';
 import { woods } from '../data/brand.js';
@@ -172,7 +172,7 @@ export default function SwatchFan() {
     const i = clampIndex(Math.round(pos));
     if (i !== activeRef.current) {
       activeRef.current = i;
-      playClick();
+      tick(1.6);
       setActive(i);
     }
   }, []);

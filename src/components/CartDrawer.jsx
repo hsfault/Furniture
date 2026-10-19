@@ -3,7 +3,7 @@ import { Minus, Plus, X } from 'lucide-react';
 import { gsap } from '../lib/gsap.js';
 import { getLenis } from '../lib/lenis.js';
 import { reducedMotion } from '../lib/env.js';
-import { playClick } from '../lib/sound.js';
+import { slide, whoosh } from '../lib/sound.js';
 import { useUI } from '../store/ui.js';
 import { useCart, cartSubtotal, cartCount } from '../store/cart.js';
 import { woods, fabrics } from '../data/brand.js';
@@ -19,7 +19,7 @@ function Line({ item }) {
   const setQty = useCart((s) => s.setQty);
   const remove = useCart((s) => s.remove);
   const drop = () => {
-    playClick();
+    whoosh(0.6, 0.35, false);
     gsap.to(row.current, {
       height: 0, opacity: 0, paddingTop: 0, paddingBottom: 0, marginTop: 0,
       duration: reducedMotion ? 0.01 : 0.5, ease: 'power4.inOut',
@@ -67,8 +67,10 @@ export default function CartDrawer() {
   useEffect(() => {
     if (open) {
       setMounted(true);
+      slide(1, true);
       getLenis()?.stop();
     } else if (mounted) {
+      slide(0.8, false);
       getLenis()?.start();
     }
   }, [open, mounted]);

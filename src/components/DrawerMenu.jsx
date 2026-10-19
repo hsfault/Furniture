@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from '../lib/gsap.js';
 import { getLenis } from '../lib/lenis.js';
 import { reducedMotion, finePointer } from '../lib/env.js';
-import { playClick } from '../lib/sound.js';
+import { slide } from '../lib/sound.js';
 import { useUI } from '../store/ui.js';
 import { menuDrawers, brand } from '../data/brand.js';
 import { go } from './DoorTransition.jsx';
@@ -64,6 +64,7 @@ export default function DrawerMenu() {
     const lenis = getLenis();
     if (open) {
       setVisible(true);
+      slide(1, true);
       lenis?.stop();
     } else lenis?.start();
   }, [open]);
@@ -92,7 +93,7 @@ export default function DrawerMenu() {
   }, [open, visible]);
 
   const pick = (item) => {
-    playClick();
+    slide(1, false);
     setMenu(false);
     setTimeout(() => go(item.to), reducedMotion ? 0 : 420);
   };

@@ -9,6 +9,7 @@ import DoorTransition from './components/DoorTransition.jsx';
 import Footer from './components/Footer.jsx';
 import CartDrawer from './components/CartDrawer.jsx';
 import ProductSheet from './components/ProductSheet.jsx';
+import SoundEffects from './components/SoundEffects.jsx';
 import Home from './pages/Home.jsx';
 import NotFound from './pages/NotFound.jsx';
 
@@ -39,6 +40,7 @@ export default function App() {
   return (
     <>
       <GLImageLayer />
+      <SoundEffects />
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[400] focus:rounded-full focus:bg-espresso focus:px-4 focus:py-2 focus:text-linen">
         Skip to content
       </a>

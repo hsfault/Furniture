@@ -6,7 +6,6 @@ import { useUI } from '../store/ui.js';
 import { useCart, cartCount } from '../store/cart.js';
 import { nav } from '../data/brand.js';
 import { gsap } from '../lib/gsap.js';
-import { playClick } from '../lib/sound.js';
 
 function Roll({ children }) {
   return (
@@ -78,7 +77,6 @@ export default function Nav() {
             id="cart-target"
             type="button"
             onClick={() => {
-              playClick();
               setCart(true);
             }}
             className="roll-host tap inline-flex items-center gap-2 px-2 text-[15px] lg:ml-4"
@@ -89,11 +87,10 @@ export default function Nav() {
               {count}
             </span>
           </button>
-          <SoundToggle dark={menuOpen} className="hidden sm:inline-flex" />
+          <SoundToggle dark={menuOpen} />
           <button
             type="button"
             onClick={() => {
-              playClick();
               setMenu(!menuOpen);
             }}
             className="roll-host tap inline-flex items-center gap-3 pl-2 text-[15px]"

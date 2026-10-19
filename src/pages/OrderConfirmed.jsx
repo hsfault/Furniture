@@ -6,6 +6,7 @@ import { reducedMotion } from '../lib/env.js';
 import { formatPrice } from '../lib/format.js';
 import { dateLong } from '../lib/time.js';
 import { TLink } from '../components/DoorTransition.jsx';
+import { pop } from '../lib/sound.js';
 
 const STEPS = [
   { label: 'Order received', days: 0, note: 'A carpenter reads your order the same day.' },
@@ -34,7 +35,7 @@ export default function OrderConfirmed() {
       const d = reducedMotion ? 0.01 : 1;
       const tl = gsap.timeline({ delay: 0.9 });
       tl.fromTo('.tl-line', { scaleX: 0, scaleY: 0 }, { scaleX: 1, scaleY: 1, duration: 2.2 * d, ease: 'power2.inOut' });
-      tl.fromTo('.tl-node', { scale: 0 }, { scale: 1, duration: 0.6 * d, ease: 'back.out(2.4)', stagger: 0.42 * d }, 0.1);
+      tl.fromTo('.tl-node', { scale: 0 }, { scale: 1, duration: 0.6 * d, ease: 'back.out(2.4)', stagger: { each: 0.42 * d, onStart: () => pop() } }, 0.1);
       tl.fromTo('.tl-text', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6 * d, stagger: 0.42 * d, ease: 'expo.out' }, 0.25);
     },
     { scope: root },

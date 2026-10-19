@@ -10,7 +10,7 @@ import Vase from './models/Vase.jsx';
 import { getTexture } from './materials.js';
 import { useUI } from '../store/ui.js';
 import { hourFloat } from '../lib/time.js';
-import { playThud } from '../lib/sound.js';
+import { playThud, buzz } from '../lib/sound.js';
 
 // --- Light from the visitor's clock -------------------------------------------------
 const warm = new THREE.Color('#FFB066');
@@ -301,6 +301,7 @@ function Pieces({ progress, reduced, sun, power, motion }) {
     else if (flicker.current !== null) {
       const f = state.clock.elapsedTime - flicker.current;
       const pattern = f < 0 ? 0 : f < 0.07 ? 0.9 : f < 0.16 ? 0.05 : f < 0.22 ? 0.7 : f < 0.34 ? 0.15 : f < 0.4 ? 1 : 1;
+      if (pattern > 0.5 && power.current < 0.3 * sun.lamp) buzz();
       power.current = pattern * sun.lamp;
     } else power.current = 0;
   });

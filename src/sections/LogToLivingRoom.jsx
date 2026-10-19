@@ -3,6 +3,10 @@ import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap.js';
 import { flipChars } from '../lib/splitReveal.js';
 import { reducedMotion, isMobile } from '../lib/env.js';
 import { getLenis } from '../lib/lenis.js';
+import { tick, saw, knock, chime } from '../lib/sound.js';
+
+// The workshop, heard as you pass each act: seasoned, cut, joined, finished.
+const ACT_SOUNDS = [() => tick(1.4), () => saw(), () => { knock(); setTimeout(() => knock(0.8), 160); }, () => chime(0.6)];
 import LazyMount from '../components/LazyMount.jsx';
 
 const LogStoryScene = lazy(() => import('../three/LogStoryScene.jsx'));
@@ -23,6 +27,7 @@ export default function LogToLivingRoom() {
   const line = useRef(null);
   const progress = useRef(0);
   const [step, setStep] = useState(0);
+  const heard = useRef(0);
   const [mobile] = useState(isMobile);
   const pinned = !mobile && !reducedMotion;
 
@@ -42,7 +47,12 @@ export default function LogToLivingRoom() {
         scrub: true,
         onUpdate: (self) => {
           progress.current = self.progress;
-          setStep(Math.min(3, Math.floor(self.progress * 4)));
+          const s = Math.min(3, Math.floor(self.progress * 4));
+          if (s !== heard.current) {
+            heard.current = s;
+            ACT_SOUNDS[s]();
+          }
+          setStep(s);
           if (line.current) line.current.style.transform = `scaleY(${self.progress})`;
         },
       });
@@ -52,6 +62,10 @@ export default function LogToLivingRoom() {
 
   const goStep = (i) => {
     setStep(i);
+    if (!pinned && i !== heard.current) {
+      heard.current = i;
+      ACT_SOUNDS[i]();
+    }
     if (pinned) {
       const st = ScrollTrigger.getAll().find((s) => s.trigger === pin.current);
       if (st) {

@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap.js';
 import { flipChars } from '../lib/splitReveal.js';
 import { reducedMotion } from '../lib/env.js';
-import { playClick } from '../lib/sound.js';
+import { creak, thud, chime } from '../lib/sound.js';
 import { brand } from '../data/brand.js';
 import { openStatus, fmtHour, nextDays, dayShort, dayLong, dateShort } from '../lib/time.js';
 
@@ -62,7 +62,7 @@ export default function Visit() {
 
   const openDoors = () =>
     gsap
-      .timeline()
+      .timeline({ onStart: () => creak() })
       .to(doorL.current, { rotationY: 104, duration: reducedMotion ? 0.01 : 1.6, ease: 'power3.inOut' }, 0)
       .to(doorR.current, { rotationY: -104, duration: reducedMotion ? 0.01 : 1.6, ease: 'power3.inOut' }, 0)
       .fromTo(bloom.current, { opacity: 0 }, { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0.3);
@@ -87,13 +87,16 @@ export default function Visit() {
     if (name.trim().length < 2) return setError('Tell us your name.');
     if (phone.replace(/\D/g, '').length < 10) return setError('A phone number we can call, please.');
     setError('');
-    playClick();
     const d = days[day];
     const msg = `We'll see you on ${dayLong(d)}, ${slotLabel(SLOTS[slot])}.`;
     gsap
       .timeline()
       .to([doorL.current, doorR.current], { rotationY: 0, duration: reducedMotion ? 0.01 : 0.9, ease: 'power3.inOut' })
-      .add(() => setBooked(msg))
+      .add(() => {
+        thud(0.6);
+        setBooked(msg);
+        setTimeout(() => chime(), 500);
+      })
       .add(openDoors(), '+=0.35');
   };
 

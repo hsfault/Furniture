@@ -3,7 +3,7 @@ import { Shuffle } from 'lucide-react';
 import { gsap, Draggable, useGSAP } from '../lib/gsap.js';
 import { flipChars } from '../lib/splitReveal.js';
 import { isMobile, reducedMotion } from '../lib/env.js';
-import { playClick, playThud } from '../lib/sound.js';
+import { rustle, thud, tick, whoosh } from '../lib/sound.js';
 import { homes } from '../data/homes.js';
 import { bySlug } from '../data/products.js';
 import Img from '../components/Img.jsx';
@@ -16,6 +16,7 @@ function Polaroid({ home, innerRef, cardRef, onFlip, style, className = '' }) {
       style={style}
       tabIndex={0}
       role="button"
+      data-sound="none"
       aria-label={`${home.caption}. Press Enter to turn it over.`}
       onDoubleClick={onFlip}
       onKeyDown={(e) => {
@@ -73,7 +74,7 @@ function Table() {
 
   const flip = (i) => {
     flipped.current[i] = !flipped.current[i];
-    playClick();
+    rustle();
     gsap.to(faces.current[i], { rotationY: flipped.current[i] ? 180 : 0, duration: 0.9, ease: 'expo.out', transformPerspective: 1000 });
   };
 
@@ -86,6 +87,7 @@ function Table() {
       zIndexBoost: false,
       onPress() {
         z.current += 1;
+        tick(1.2);
         gsap.set(this.target, { zIndex: z.current });
         gsap.to(this.target, { scale: 1.05, duration: 0.3, ease: 'power2.out', boxShadow: '0 40px 60px -20px rgba(0,0,0,.55)' });
       },
@@ -97,7 +99,7 @@ function Table() {
       },
     });
     function drop(el) {
-      playThud(0.4);
+      thud(0.35);
       gsap.to(el, { scale: 1, duration: 0.7, ease: 'elastic.out(1, 0.45)', boxShadow: '0 0 0 rgba(0,0,0,0)' });
     }
     const onResize = () => scatter(false);
@@ -136,8 +138,9 @@ function Table() {
           type="button"
           className="btn-line"
           onClick={() => {
-            playClick();
+            whoosh(1, 0.7, true);
             scatter(true);
+            homes.forEach((_, i) => setTimeout(() => thud(0.2), 650 + i * 50));
           }}
         >
           <Shuffle size={16} strokeWidth={1.5} /> Shuffle
@@ -161,6 +164,7 @@ function Stack() {
       onDragEnd() {
         if (Math.abs(this.x) > 90) {
           const dir = Math.sign(this.x);
+          whoosh(0.8, 0.4, dir > 0);
           gsap.to(this.target, {
             x: dir * window.innerWidth,
             rotation: dir * 25,
@@ -175,6 +179,7 @@ function Stack() {
         } else gsap.to(this.target, { x: 0, rotation: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
       },
       onClick() {
+        rustle();
         setFlipped((f) => !f);
       },
     });

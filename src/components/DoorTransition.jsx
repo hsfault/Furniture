@@ -4,6 +4,7 @@ import { gsap, ScrollTrigger } from '../lib/gsap.js';
 import { getLenis, scrollToTop, scrollToId } from '../lib/lenis.js';
 import { reducedMotion } from '../lib/env.js';
 import { useUI } from '../store/ui.js';
+import { whoosh, thud, slide } from '../lib/sound.js';
 import { bySlug } from '../data/products.js';
 
 let runTransition = null;
@@ -97,9 +98,11 @@ export default function DoorTransition() {
       setLabel(labelFor(to));
       const d = reducedMotion ? 0.01 : 0.7;
       const doors = [leftRef.current, rightRef.current];
+      whoosh(0.9, 0.6, false);
       await gsap
         .timeline()
         .set(doors, { visibility: 'visible' })
+        .call(() => thud(0.55), null, d * 0.92)
         .to(leftRef.current, { xPercent: 0, x: 0, duration: d, ease: 'power4.inOut' }, 0)
         .to(rightRef.current, { xPercent: 0, x: 0, duration: d, ease: 'power4.inOut' }, 0)
         .fromTo(labelRef.current, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: 'expo.out' }, d * 0.7);
@@ -111,6 +114,7 @@ export default function DoorTransition() {
       ScrollTrigger.refresh();
       if (hash) scrollToId(hash, true);
       await new Promise((r) => setTimeout(r, reducedMotion ? 0 : 220));
+      slide(0.8, true);
       await gsap
         .timeline()
         .to(labelRef.current, { opacity: 0, duration: 0.25, ease: 'power2.in' }, 0)

@@ -5,6 +5,7 @@ import { flipChars } from '../lib/splitReveal.js';
 import { TLink } from './DoorTransition.jsx';
 import { brand, footer } from '../data/brand.js';
 import { fmtHour } from '../lib/time.js';
+import { chime } from '../lib/sound.js';
 
 export default function Footer() {
   const root = useRef(null);
@@ -20,6 +21,7 @@ export default function Footer() {
     e.preventDefault();
     if (!/^\S+@\S+\.\S+$/.test(email)) return;
     setSent(true);
+    chime();
   };
 
   const weekday = brand.hours[1];

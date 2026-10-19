@@ -87,7 +87,7 @@ Reduced motion: no WebGL distortion, no scrub, no film player, simple fades, 3D 
 | `CartDrawer` | desktop: walnut drawer front with brass pull slides up to 70vh, linen interior; mobile full screen; qty stepper, remove collapses, subtotal, Checkout |
 | `Lightbox`, `ProductSheet` | Flip from the source image; focus trapped, Esc closes |
 | `RollingNumber` | per-digit rolling strips for prices |
-| `SoundToggle` | 3-bar equaliser; Web Audio only (`lib/sound.js`): room tone, wood click, paper rustle, soft thud. Off by default |
+| `SoundToggle` + `SoundEffects` | On by default (remembered in localStorage), labelled On/Off with a 3-bar equaliser, in the nav on every screen size. Web Audio only (`lib/sound.js`), unlocked on the first click or key press. Room tone; a wood knock on every press and a tick on hover (global, opt out with `data-sound="none"`); drawer slides for the menu and cart; whoosh + thud + runners for the wardrobe doors; whoosh for sheets, lightboxes, filters and flung drags; brass chime for add-to-cart, booking, order and newsletter; fan detent ticks; fabric puff and size slide in the configurator; tick, saw, two knocks and a chime for the four workshop acts; lamp buzz; Polaroid tick, rustle and thud; Visit door creak; film-cut whoosh, thud and creak; timeline pops |
 
 ## 8. Home page — chapters
 

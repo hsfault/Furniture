@@ -8,6 +8,7 @@ import { useUI } from '../store/ui.js';
 import { brand, woods, fabrics } from '../data/brand.js';
 import { go, TLink } from '../components/DoorTransition.jsx';
 import Img from '../components/Img.jsx';
+import { chime } from '../lib/sound.js';
 
 const CITIES = ['Lahore', 'Islamabad', 'Rawalpindi', 'Karachi', 'Faisalabad', 'Multan', 'Sialkot', 'Peshawar'];
 const SLOTS = ['Morning · 10–1', 'Afternoon · 2–6'];
@@ -67,6 +68,7 @@ export default function Checkout() {
       return;
     }
     setPlacing(true);
+    chime();
     const id = orderNumber();
     const order = { id, total, city: f.city, name: f.name.split(' ')[0], placed: Date.now(), delivery: days[day].getTime(), items };
     try {

@@ -6,6 +6,7 @@ import { reducedMotion } from '../lib/env.js';
 import { bySlug } from '../data/products.js';
 import { formatPrice } from '../lib/format.js';
 import { go } from './DoorTransition.jsx';
+import { whoosh } from '../lib/sound.js';
 import { useFocusTrap } from './useFocusTrap.js';
 import Img from './Img.jsx';
 
@@ -22,6 +23,7 @@ export default function Lightbox({ room, from, onClose }) {
   const close = () => {
     if (closing.current) return;
     closing.current = true;
+    whoosh(0.6, 0.45, false);
     setTag(null);
     const tl = gsap.timeline({
       onComplete: () => {
@@ -39,6 +41,7 @@ export default function Lightbox({ room, from, onClose }) {
 
   useLayoutEffect(() => {
     getLenis()?.stop();
+    whoosh(0.8, 0.55, true);
     if (from && !reducedMotion) {
       from.setAttribute('data-flip-id', 'room-lb');
       const state = Flip.getState(from);

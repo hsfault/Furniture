@@ -8,6 +8,7 @@ import { useUI } from '../store/ui.js';
 import { chapters, CUT_SECONDS } from '../data/film.js';
 import { FilmCut } from '../three/FilmCutScene.js';
 import SoundToggle from './SoundToggle.jsx';
+import { whoosh, thud, creak } from '../lib/sound.js';
 
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
 const seg = (a, b, x) => clamp01((x - a) / (b - a));
@@ -76,6 +77,7 @@ export default function FilmPlayer() {
       if (i > 0) {
         const k = { c: 0 };
         const from = prevEnd;
+        let heard = 0; // the cut's sounds fire once each, playing forward
         t.fromTo(
           k,
           { c: 0 },
@@ -89,6 +91,11 @@ export default function FilmPlayer() {
               if (cutName.current) cutName.current.textContent = c.title;
             },
             onUpdate: () => {
+              const crossed = (x) => heard < x && k.c >= x;
+              if (crossed(0.02)) whoosh(1, 0.7, false);
+              if (crossed(0.36)) thud(0.75);
+              if (crossed(0.64)) creak(0.9);
+              heard = k.c;
               showCut(true);
               cut.current?.render(k.c);
               scrollTo(k.c < 0.5 ? from : start);
@@ -381,7 +388,7 @@ export default function FilmPlayer() {
             <button type="button" onClick={() => setListOpen((o) => !o)} className="tap flex shrink-0 items-center justify-center" aria-label="Chapters" aria-expanded={listOpen}>
               <ListOrdered size={16} strokeWidth={1.5} />
             </button>
-            <SoundToggle className="shrink-0" />
+            <SoundToggle className="shrink-0" label={false} />
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { bySlug } from '../data/products.js';
 import { woods } from '../data/brand.js';
 import { formatDims } from '../lib/format.js';
 import { flyToCart } from '../lib/flyToCart.js';
+import { whoosh } from '../lib/sound.js';
 import { go } from './DoorTransition.jsx';
 import { useFocusTrap } from './useFocusTrap.js';
 import RollingNumber from './RollingNumber.jsx';
@@ -44,6 +45,7 @@ export default function ProductSheet() {
 
   useLayoutEffect(() => {
     if (!current || !sheet) return;
+    whoosh(0.8, 0.5, true);
     gsap.fromTo(root.current.firstChild, { opacity: 0 }, { opacity: 1, duration: 0.4 });
     gsap.fromTo(panel.current, { xPercent: 100 }, { xPercent: 0, duration: reducedMotion ? 0.01 : 0.8, ease: 'power4.out' });
     if (flipState.current) {

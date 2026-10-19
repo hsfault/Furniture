@@ -1,6 +1,7 @@
 import { gsap } from './gsap.js';
 import { reducedMotion } from './env.js';
 import { useUI } from '../store/ui.js';
+import { chime, whoosh } from './sound.js';
 
 // Flies a thumbnail from `from` (an element or a DOMRect) to the cart icon in an
 // arc, then calls `done` and bumps the badge.
@@ -8,6 +9,7 @@ export function flyToCart({ from, src, done }) {
   const target = document.getElementById('cart-target');
   const rect = from instanceof Element ? from.getBoundingClientRect() : from;
   const finish = () => {
+    chime();
     done?.();
     useUI.getState().bumpCart();
   };
@@ -29,6 +31,7 @@ export function flyToCart({ from, src, done }) {
   const y1 = t.top + t.height / 2 - size / 2;
   const lift = Math.min(y0, y1) - 160;
   const p = { t: 0 };
+  whoosh(0.5, 0.8, true);
   gsap.to(p, {
     t: 1,
     duration: 0.95,

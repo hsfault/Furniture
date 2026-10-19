@@ -1,11 +1,12 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { gsap, Draggable, Flip, ScrollTrigger, useGSAP } from '../lib/gsap.js';
+import { gsap, Draggable, Flip, InertiaPlugin, ScrollTrigger, useGSAP } from '../lib/gsap.js';
 import { flipChars } from '../lib/splitReveal.js';
 import { initParallax } from '../lib/parallax.js';
 import { isMobile, reducedMotion } from '../lib/env.js';
 import { formatPrice } from '../lib/format.js';
 import { products, categories, matchesCategory } from '../data/products.js';
 import { useUI } from '../store/ui.js';
+import { whoosh } from '../lib/sound.js';
 import GLImage from '../gl/GLImage.jsx';
 
 const COLW = 270;
@@ -146,6 +147,10 @@ function Desktop({ filter }) {
       onThrowUpdate() {
         o.x = this.x;
         o.y = this.y;
+      },
+      onDragEnd() {
+        const v = Math.hypot(InertiaPlugin.getVelocity(proxy.current, 'x') || 0, InertiaPlugin.getVelocity(proxy.current, 'y') || 0);
+        if (v > 600) whoosh(Math.min(1, v / 2500), 0.5, true);
       },
       onClick(e) {
         const el = e.target instanceof Element ? e.target.closest('[data-slug]') : null;
@@ -304,7 +309,13 @@ export default function CollectionCanvas() {
           </h2>
         </div>
         <div className="md:max-w-[60%]">
-          <Chips value={filter} onChange={setFilter} />
+          <Chips
+            value={filter}
+            onChange={(f) => {
+              whoosh(0.8, 0.5, true);
+              setFilter(f);
+            }}
+          />
           {!mobile && <p className="mono mt-3 text-taupe md:text-right">Drag to wander · Click a piece to open it</p>}
         </div>
       </div>
