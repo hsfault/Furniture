@@ -127,7 +127,7 @@ export default function Visit() {
             The doors are <i>open</i>
           </h2>
           <div className="mt-8 grid gap-8 sm:grid-cols-2">
-            <address className="not-italic">
+            <address className="flex flex-col items-start not-italic">
               <p className="text-lg leading-snug">
                 {brand.showroom.line1}
                 <br />

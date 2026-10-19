@@ -17,6 +17,8 @@ Generate images with `scripts/pollinations.py` (Python stdlib, no install needed
 - When the paid API (`gen.pollinations.ai`) answers HTTP 402 (out of pollen), the script switches to the keyless free endpoint `image.pollinations.ai` (flux, ~8 s between requests, waits out 429s). The cloud environment's network policy must allow that host too. `--no-free` turns the fallback off. If neither host works, the batch stops at once and lists what is missing.
 - Single image: `python3 scripts/pollinations.py "<prompt>" -o images/<name>.jpg -W 1600 -H 900 --seed 1`. Output paths are relative to `public/`.
 - Cheapest decent model: `POLLINATIONS_MODEL=flux` (~0.002 pollen per image). `--list-models` shows the rest.
+- The free endpoint only serves the `sana` model, caps images near 0.6 MP and stamps a logo, which the script crops off with Pillow. It paints wood reddish and draws textures as tiles or objects, so texture JPGs are opt-in (`build-manifest.py --with-textures`) and the 3D keeps its procedural textures.
+- Three images were finished by hand after generation: `visit-door-left.jpg` cropped to the door slab, `visit-door-right.jpg` is its mirror, and `preloader-walnut.jpg` regraded from red to walnut browns with `ImageOps.colorize`. Redo these steps if you regenerate them.
 - Missing images degrade gracefully: photos show a plaster placeholder with their caption, and every 3D texture has a procedural canvas twin in `src/three/materials.js`.
 
 ## Conventions
