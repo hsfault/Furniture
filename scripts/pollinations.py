@@ -66,6 +66,35 @@ def free_url():
 
 
 FREE_GAP = 8  # seconds between keyless requests; the free endpoint is rate limited
+FREE_STRIP = 0.07  # extra height requested, then cut off: the free tier stamps a logo bottom-right
+
+
+def trim_free_image(data, width, height):
+    """Cut the watermark strip off the bottom, then centre-crop to width:height.
+
+    Uses Pillow when it is installed; otherwise the image is saved untouched.
+    """
+    try:
+        from io import BytesIO
+        from PIL import Image
+    except ImportError:
+        print("  note: Pillow not installed, the free-tier watermark stays", file=sys.stderr)
+        return data
+    im = Image.open(BytesIO(data)).convert("RGB")
+    w, h = im.size
+    strip = max(36, round(h * FREE_STRIP))
+    im = im.crop((0, 0, w, h - strip))
+    w, h = im.size
+    target = width / height
+    if w / h > target:
+        nw = round(h * target)
+        im = im.crop(((w - nw) // 2, 0, (w - nw) // 2 + nw, h))
+    else:
+        nh = round(w / target)
+        im = im.crop((0, (h - nh) // 2, w, (h - nh) // 2 + nh))
+    buf = BytesIO()
+    im.save(buf, "JPEG", quality=88, optimize=True, progressive=True)
+    return buf.getvalue()
 _free = {"on": False, "allowed": True, "last": 0.0}
 
 
@@ -128,7 +157,8 @@ def generate(prompt, out, width=1024, height=1024, model=None, seed=None,
             _free["on"] = True
             print(f"out of pollen; switching to the free endpoint {free_url()}", file=sys.stderr)
     if data is None:
-        free_params = {"width": width, "height": height, "nologo": "true", "model": "flux"}
+        # Ask for a taller frame so the logo strip can be cut off afterwards.
+        free_params = {"width": width, "height": round(height * (1 + FREE_STRIP) + 36), "nologo": "true"}
         if seed is not None:
             free_params["seed"] = seed
         gap = FREE_GAP - (time.time() - _free["last"])
@@ -138,6 +168,7 @@ def generate(prompt, out, width=1024, height=1024, model=None, seed=None,
             data = fetch(f"{free_url()}/prompt/{quoted}?{urllib.parse.urlencode(free_params)}", None, prompt)
         finally:
             _free["last"] = time.time()
+        data = trim_free_image(data, width, height)
 
     out.write_bytes(data)
     print(f"saved {out.relative_to(REPO_ROOT) if out.is_relative_to(REPO_ROOT) else out} "
